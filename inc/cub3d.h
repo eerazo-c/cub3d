@@ -10,6 +10,11 @@
 # include "../libs/minilibx/mlx.h"
 # include "../libs/libft/libft.h"
 
+# define SIZE 4000
+# define ON_KEYPRESS 2
+# define ON_DESTROY 17
+
+//fractol
 # define WIDTH	1000
 # define HEIGHT	1000
 
@@ -110,7 +115,11 @@ typedef struct s_map
 }				t_map;
 
 //PROTOTIPO_FUNCIONES
-	
 
+void	check_arg(int argc, char **argv);
+int	check_filename(char	*filename);
+void	ft_error(char *msg, t_map *game);
+void	ft_error_fd(char *msg, int fd);
+void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue);
 
 #endif

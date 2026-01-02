@@ -13,24 +13,6 @@ void	check_arg(int argc, char **argv)
 		ft_error_fd("ERROR: number of arguments invalid", 1);
 }
 
-void	ft_error(char *msg, t_map *game)
-{
-	ft_putendl_fd(msg, 1);
-	exit(1);
-}
-
-void	ft_error_fd(char *msg, int fd)
-{
-	ft_putendl_fd(msg, fd);
-	exit(1);
-}
-
-void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue)
-{
-	ft_putendl_fd(msg, fd);
-	exit(exitvalue);
-}
-
 int	check_filename(char	*filename)
 {
 	char	*ext;
@@ -54,8 +36,6 @@ int	check_filename(char	*filename)
 	}
 	return (0);
 }
-
-
 
 int	main(int argc, char **argv)
 {

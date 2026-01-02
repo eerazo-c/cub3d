@@ -6,16 +6,16 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2026/01/02 18:18:33 by elerazo-         ###   ########.fr        #
+#    Updated: 2026/01/02 18:29:25 by elerazo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
+CFLAGS		=	-Wall -Wextra -Werror -I inc/ 
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src
-SRCS		=	main.c 
+SRCS		=	main.c utils.c
 
 MLX_PATH	=	./libs/minilibx
 LIBFT_PATH	=	./libs/libft/
@@ -42,7 +42,7 @@ banner:
 	@echo "# ========================== #"
 	@printf "%b" "\n$(RESET)"
 
-$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Inc/cub3d.h | $(OBJDIR)
+$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c inc/cub3d.h | $(OBJDIR)
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
