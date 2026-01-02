@@ -1,2 +1,2 @@
 # cub3d
-This project’s objectives are similar to all this first year’s objectives: rigor, use of C, basic algorithms, information research, etc.
+project inspired by Wolfenstein 3D. The goal is to create a simple 3D game engine using raycasting, written in C.
