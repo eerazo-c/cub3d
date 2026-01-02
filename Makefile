@@ -6,12 +6,12 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2026/01/02 18:29:25 by elerazo-         ###   ########.fr        #
+#    Updated: 2026/01/02 19:09:55 by elerazo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -I inc/ 
+CFLAGS		=	-Wall -Wextra -Werror -g -I inc/ 
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src

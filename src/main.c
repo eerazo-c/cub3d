@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdio.h>
 
 void	check_arg(int argc, char **argv)
 {
@@ -40,19 +41,22 @@ int	check_filename(char	*filename)
 int	main(int argc, char **argv)
 {
 	t_map game;
+
 	check_arg(argc, argv);
 // cambiar para 3d	read_map(argv, &game);
 //  modificar para 3d	check_map_empty(&game);
 //   "               "           " 	check_map(&game);
 	game.mlx_ptr = mlx_init();
 // talvex 	init_imgs(&game);
-	game.win_ptr = mlx_new_window(game.mlx_ptr, game.width * SIZE,
-			game.height * SIZE, "Pulpolifactico");
+	game.win_ptr = mlx_new_window(game.mlx_ptr, SIZE, SIZE, "Pulpito");
+	printf("%zu} {%zu", game.width,game.height);
 	if (!game.win_ptr)
 		ft_error_fd("ERROR: Window returned null", 1);
 //puede 	draw_map(&game); 
-	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, player_movement, &game);
+/*	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, player_movement, &game);
 	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, free_maps_close, &game);
+*/
 	mlx_loop(game.mlx_ptr);
+
 	return (0);
 }

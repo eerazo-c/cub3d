@@ -2,6 +2,7 @@
 
 void	ft_error(char *msg, t_map *game)
 {
+	(void)game;
 	ft_putendl_fd(msg, 1);
 	exit(1);
 }
