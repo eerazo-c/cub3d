@@ -7,6 +7,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <stddef.h>
+# include <fcntl.h>
 # include "../libs/minilibx/mlx.h"
 # include "../libs/libft/libft.h"
 
@@ -14,8 +16,8 @@
 # define ON_DESTROY 17
 
 //fractol
-# define WIDTH	1000
-# define HEIGHT	1000
+# define WIDTH	1080
+# define HEIGHT	10000
 
 //colors
 # define BLACK       0x000000  // RGB(0, 0, 0)
@@ -36,17 +38,14 @@
 
 # define ESC 65307
 # define CTR 65507
-# define S_DOWN 5
-# define S_UP 4
+
 # define K_LEFT 65361
 # define K_RIGHT 65363
-# define K_UP 65362
-# define K_DOWN 65364
-# define ZOOM_IN 65451 // Keypad +
-# define ZOOM_OUT 65453 // Keypad -
-# define BUTTON5 5
-# define BUTTON4 4
 
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_S 115
+# define KEY_W 119
 //struct  cosas fractol
 /*
 typedef struct s_complex
@@ -90,25 +89,25 @@ typedef struct s_pos
 
 typedef struct s_img
 {
-    void    *img_ptr;      		
-    char    *addr;         		// Puntero al primer píxel (buffer de memoria)
-    int     bits_per_pixel;		 // Número de bits por píxel (BPP), usualmente 32
-    int     line_length;    		// Tamaño de una línea en bytes
-    int     endian;        			 // Orden de los bytes (little/big endian)
-    int     width;
-    int     height;
+    void	*img_ptr;      		
+    char	*addr;         		// Puntero al primer píxel (buffer de memoria)
+    int		bits_per_pixel;	// Número de bits por píxel (BPP), usualmente 32
+    int		line_length;    		// Tamaño de una línea en bytes
+    int		endian;        			 // Orden de los bytes (little/big endian)
+    int		width;
+    int		height;
 } t_img;
 
 typedef struct s_player
 {
-	double			speed;
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-	int				look;		//direcion dende mira
+	double	speed;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		look;		//direcion dende mira
 }					t_player;
 
 typedef struct s_map
@@ -126,15 +125,14 @@ typedef struct s_map
 	size_t		y;
 
 }				t_map;
-
 //PROTOTIPO_FUNCIONES
 
 void	check_arg(int argc, char **argv);
-int	check_filename(char	*filename);
+int		check_filename(char	*filename);
 void	ft_error(char *msg, t_map *game);
 void	ft_error_fd(char *msg, int fd);
 void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
-void init_all(t_map *game)	;
+void	init_all(t_map *game);
 void	init_window(t_map *game);
 #endif

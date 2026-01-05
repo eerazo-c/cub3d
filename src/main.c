@@ -37,14 +37,12 @@ int	check_filename(char	*filename)
 	return (0);
 }
 
-void init_all(t_map *game)
+void	init_all(t_map *game)
 {
-	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		ft_error_fd("ERROR: mlx initialization failed", 1);
 	init_window(game);
 }
-
 
 void	init_window(t_map *game)
 {
@@ -55,10 +53,9 @@ void	init_window(t_map *game)
 		ft_error_fd("ERROR: Window returned null", 1);
 }
 
-
 int	main(int argc, char **argv)
 {
-	t_map game;
+	t_map	game;
 
 	check_arg(argc, argv);
 // cambiar para 3d	read_map(argv, &game);
@@ -73,6 +70,5 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, free_maps_close, &game);
 */
 	mlx_loop(game.mlx_ptr);
-
 	return (0);
 }
