@@ -6,10 +6,15 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/05 23:14:07 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/05 23:21:31 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
+
+void	parse_line(char *line, t_map game)
+{
+
+}
 
 char *read_line(int fd)
 {
@@ -26,7 +31,8 @@ char *read_line(int fd)
 		if (xchar == '\n')
 			break ;
 		buffer[index++] = xchar;
-		buffer = ft_realloc(buffer, ft_strlen(buffer) + 1, ft_strlen(buffer) + 2);
+		buffer = ft_realloc(buffer, ft_strlen(buffer) \
+				+ 1, ft_strlen(buffer) + 2);
 		byte = read(fd, &xchar, 1);
 	}
 	if ((byte <= 0) && (index == 0))
@@ -49,7 +55,7 @@ void	parse_cub(char *file, t_map game)
 	while (line)
 	{
 		printf("LINEA LEIDA -> [%s]\n", line);
-		//parse_line(line, game);
+		parse_line(line, game);
 		free(line);
 		line = read_line(fd);
 	}
