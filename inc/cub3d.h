@@ -48,12 +48,6 @@
 # define KEY_W 119
 //struct  cosas fractol
 /*
-typedef struct s_complex
-{
-	double	x;
-	double	y;
-}	t_complex;
-
 typedef struct s_img
 {
 	void	*img_ptr;
@@ -80,6 +74,12 @@ typedef struct s_plano
 
 }		t_plano;
 */
+
+typedef struct s_colores
+{
+	float	x;
+	float	y;
+}	t_colores;
 
 typedef struct s_pos
 {
@@ -112,14 +112,13 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	char		*raw_map;
-	char		**map;
-	size_t		height;
-	size_t		width;
-	t_pos		player;
-	int			ex;
+	void		*mlx_ptr; //puntero para inciar minili
+	void		*win_ptr; //pntero para la ventana
+//	char		*raw_map; esto pero por sia caso
+//	char		**map;
+	size_t		height; //para guardar el alto y el ancho
+	size_t		width; // tambien
+//	t_pos		player;
 	t_img		*imgs;
 	size_t		x;
 	size_t		y;
