@@ -65,6 +65,7 @@ int	main(int argc, char **argv)
 //  modificar para 3d	check_map_empty(&game);
 //   "               "           " 	check_map(&game);
 	game.mlx_ptr = mlx_init();
+	init_all(&game);
 // talvex 	init_imgs(&game);
 
 //puede 	draw_map(&game); 
