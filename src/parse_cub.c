@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/05 21:28:13 by elerazo-         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:14:07 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -48,6 +48,7 @@ void	parse_cub(char *file, t_map game)
 	line = read_line(fd);
 	while (line)
 	{
+		printf("LINEA LEIDA -> [%s]\n", line);
 		//parse_line(line, game);
 		free(line);
 		line = read_line(fd);
