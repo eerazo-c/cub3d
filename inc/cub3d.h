@@ -10,7 +10,6 @@
 # include "../libs/minilibx/mlx.h"
 # include "../libs/libft/libft.h"
 
-# define SIZE 4000
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
 
@@ -89,26 +88,40 @@ typedef struct s_pos
 	size_t	y;
 }				t_pos;
 
-typedef struct s_img_data
+typedef struct s_img
 {
-	void	*img_ptr;
-	int		*data;
-	int		size_l;
-	int		bpp;
-	int		endian;
-}	t_img_data;
+    void    *img_ptr;      		
+    char    *addr;         		// Puntero al primer píxel (buffer de memoria)
+    int     bits_per_pixel;		 // Número de bits por píxel (BPP), usualmente 32
+    int     line_length;    		// Tamaño de una línea en bytes
+    int     endian;        			 // Orden de los bytes (little/big endian)
+    int     width;
+    int     height;
+} t_img;
+
+typedef struct s_player
+{
+	double			speed;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	int				look;		//direcion dende mira
+}					t_player;
 
 typedef struct s_map
 {
+	void		*mlx_ptr;
+	void		*win_ptr;
 	char		*raw_map;
 	char		**map;
 	size_t		height;
 	size_t		width;
 	t_pos		player;
 	int			ex;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img_data	*imgs;
+	t_img		*imgs;
 	size_t		x;
 	size_t		y;
 
@@ -120,6 +133,8 @@ void	check_arg(int argc, char **argv);
 int	check_filename(char	*filename);
 void	ft_error(char *msg, t_map *game);
 void	ft_error_fd(char *msg, int fd);
-void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue);
+void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
+void init_all(t_map *game)	;
+void	init_window(t_map *game);
 #endif

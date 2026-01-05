@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
 
 void	check_arg(int argc, char **argv)
 {
@@ -38,6 +37,25 @@ int	check_filename(char	*filename)
 	return (0);
 }
 
+void init_all(t_map *game)
+{
+	game->mlx_ptr = mlx_init();
+	if (!game->mlx_ptr)
+		ft_error_fd("ERROR: mlx initialization failed", 1);
+	init_window(game);
+}
+
+
+void	init_window(t_map *game)
+{
+	if (!game->mlx_ptr)
+		ft_error_fd("ERROR: mlx initialization failed", 1);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "Pulpito");
+	if (!game->win_ptr)
+		ft_error_fd("ERROR: Window returned null", 1);
+}
+
+
 int	main(int argc, char **argv)
 {
 	t_map game;
@@ -48,10 +66,7 @@ int	main(int argc, char **argv)
 //   "               "           " 	check_map(&game);
 	game.mlx_ptr = mlx_init();
 // talvex 	init_imgs(&game);
-	game.win_ptr = mlx_new_window(game.mlx_ptr, SIZE, SIZE, "Pulpito");
-	printf("%zu} {%zu", game.width,game.height);
-	if (!game.win_ptr)
-		ft_error_fd("ERROR: Window returned null", 1);
+
 //puede 	draw_map(&game); 
 /*	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, player_movement, &game);
 	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, free_maps_close, &game);

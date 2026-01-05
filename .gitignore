@@ -1,0 +1,11 @@
+*.o
+*.a
+*.so
+*.out
+*.exe
+*.log
+*.tmp
+.DS_Store
+.vscode/
+build/ 
+*.gch
