@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/05 18:51:23 by elerazo-          #+#    #+#             */
+/*   Updated: 2026/01/05 21:27:13 by elerazo-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "cub3d.h"
 
 void	check_arg(int argc, char **argv)
@@ -58,9 +69,11 @@ int	main(int argc, char **argv)
 	t_map	game;
 
 	check_arg(argc, argv);
+	ft_bzero(&game, sizeof(t_map));
+	parse_cub(argv[1], game);
 // cambiar para 3d	read_map(argv, &game);
 //  modificar para 3d	check_map_empty(&game);
-//   "               "           " 	check_map(&game);
+//  check_map(&game);
 	game.mlx_ptr = mlx_init();
 	init_all(&game);
 // talvex 	init_imgs(&game);

@@ -114,14 +114,21 @@ typedef struct s_map
 {
 	void		*mlx_ptr; //puntero para inciar minili
 	void		*win_ptr; //pntero para la ventana
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	char		**map;
+	int			floor_color;
+	int			ceiling_color;
+	int			map_star;
 //	char		*raw_map; esto pero por sia caso
-//	char		**map;
 	size_t		height; //para guardar el alto y el ancho
 	size_t		width; // tambien
 //	t_pos		player;
 	t_img		*imgs;
-	size_t		x;
-	size_t		y;
+//	size_t		x;
+//	size_t		y;
 
 }				t_map;
 //PROTOTIPO_FUNCIONES
@@ -134,4 +141,9 @@ void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
 void	init_all(t_map *game);
 void	init_window(t_map *game);
+
+void	parse_cub(char *file, t_map game);
+char	*read_line(int fd);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+
 #endif
