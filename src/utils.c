@@ -6,7 +6,7 @@
 /*   By: elerazo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 23:18:23 by elerazo           #+#    #+#             */
-/*   Updated: 2026/01/05 23:18:31 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/06 19:43:17 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -35,7 +35,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	return (new);
 }
 
-void	ft_error(char *msg, t_map *game)
+void	ft_error(char *msg, t_map game)
 {
 	(void)game;
 	ft_putendl_fd(msg, 1);

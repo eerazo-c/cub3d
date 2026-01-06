@@ -121,7 +121,7 @@ typedef struct s_map
 	char		**map;
 	int			floor_color;
 	int			ceiling_color;
-	int			map_star;
+	int			map_started;
 //	char		*raw_map; esto pero por sia caso
 	size_t		height; //para guardar el alto y el ancho
 	size_t		width; // tambien
@@ -135,7 +135,7 @@ typedef struct s_map
 
 void	check_arg(int argc, char **argv);
 int		check_filename(char	*filename);
-void	ft_error(char *msg, t_map *game);
+void	ft_error(char *msg, t_map game);
 void	ft_error_fd(char *msg, int fd);
 void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
@@ -145,5 +145,11 @@ void	init_window(t_map *game);
 void	parse_cub(char *file, t_map game);
 char	*read_line(int fd);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-
+int		is_empty_line(char *line);
+void	parse_header_or_map(char *line, t_map game);
+void	parse_line(char *line, t_map game);
+void	save_map_line(char *line, t_map game);
+int		is_map_line(char *line);
+int		is_texture(char *line);
+void	save_texture(char *line, t_map game);
 #endif
