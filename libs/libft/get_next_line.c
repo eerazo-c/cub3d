@@ -9,10 +9,9 @@
 /*   Updated: 2025/02/16 17:34:13 by israetor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_join_free(char *line, char *buff)
+static char	*ft_join_free(char *line, char *buff)
 {
 	char	*aux;
 
@@ -27,7 +26,7 @@ char	*ft_join_free(char *line, char *buff)
 	return (aux);
 }
 
-char	*ft_readfile(int fd, char *line)
+static char	*ft_readfile(int fd, char *line)
 {
 	char	*buffer;
 	int		nb_read;
@@ -52,7 +51,7 @@ char	*ft_readfile(int fd, char *line)
 	return (line);
 }
 
-char	*ft_get_line(char *buffer)
+static char	*ft_get_line(char *buffer)
 {
 	char	*line;
 	int		i;
@@ -79,7 +78,7 @@ char	*ft_get_line(char *buffer)
 	return (line);
 }
 
-char	*ft_get_next(char *buffer)
+static char	*ft_get_next(char *buffer)
 {
 	char	*line;
 	int		i;

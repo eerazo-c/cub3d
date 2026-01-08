@@ -35,7 +35,7 @@ void	parse_line(char *line, t_map game)
 	else
 		save_map_line(line, game);
 }
-
+/*
 char *read_line(int fd)
 {
 	char	*buffer;
@@ -60,6 +60,7 @@ char *read_line(int fd)
 	buffer[index] = '\0';
 	return (buffer);
 }
+*/
 
 void	parse_cub(char *file, t_map game)
 {
@@ -70,13 +71,13 @@ void	parse_cub(char *file, t_map game)
 	if (fd < 0)
 		ft_error_fd("ERROR: cannot open file", 1);
 
-	line = read_line(fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 	//	printf("LINEA LEIDA -> [%s]\n", line);
 		parse_line(line, game);
 		free(line);
-		line = read_line(fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }

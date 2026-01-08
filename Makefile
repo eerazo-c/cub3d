@@ -57,7 +57,7 @@ $(MLX):
 	@make -C $(MLX_PATH) > /dev/null 2>&1
 
 $(LIBFT):
-	@make -C $(LIBFT_PATH) > /dev/null 2>&1
+	@make -C $(LIBFT_PATH)  > /dev/null 2>&1
 
 #$(PRINTF):
 #	@make -C $(PRINTF_PATH) > /dev/null 2>&1
