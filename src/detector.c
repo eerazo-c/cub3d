@@ -40,12 +40,10 @@ int	is_empty_line(char *line)
 
 	i = 0;
 	while (line[i])
-		i++;
-	return (1);
-	/*{
+	{
 		if (line[i] != ' ' && line[i] != '\n')
 			return (0);
 		i++;
 	}
-	*/
+	return (1);
 }

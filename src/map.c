@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int		parse_rgb(char *str, t_map game)
+int		parse_rgb(char *str, t_map *game)
 {
 	char **rgb;
 	int r;
