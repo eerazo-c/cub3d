@@ -142,14 +142,24 @@ void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 void	init_all(t_map *game);
 void	init_window(t_map *game);
 
-void	parse_cub(char *file, t_map game);
 char	*read_line(int fd);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-int		is_empty_line(char *line);
-void	parse_header_or_map(char *line, t_map game);
 void	parse_line(char *line, t_map game);
-void	save_map_line(char *line, t_map game);
-int		is_map_line(char *line);
-int		is_texture(char *line);
 void	save_texture(char *line, t_map game);
+//parse_cub
+void	parse_cub(char *file, t_map game);
+void	parse_header_or_map(char *line, t_map game);
+
+//map
+void	save_map_line(char *line, t_map game);
+void	save_textura(char *line, t_map game);
+void	save_color(char *line, t_map game);
+int		parse_rgb(char *str, t_map game);
+
+//detector
+int		is_empty_line(char *line);
+int		is_map_line(char *line);
+int		is_color(char *line);
+int		is_texture(char *line);
+
 #endif

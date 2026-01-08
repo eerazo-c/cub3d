@@ -1,5 +1,42 @@
 #include "cub3d.h"
 
+int		parse_rgb(char *str, t_map game)
+{
+	char **rgb;
+	int r;
+	int g;
+	int b;
+
+	rgb = ft_split(str, ',');
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || !rgb[3])
+		ft_error("ERROR: invalid RGB format", game);
+
+	r = ft_atoi(rgb[0]);
+	g = ft_atoi(rgb[1]);
+	b = ft_atoi(rgb[2]);
+
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		ft_error("ERROR: RGB values out of range", game);
+	free(rgb);
+	return ((r << 16) | (g << 8) | b);
+}
+
+void	save_color(char *line, t_map game)
+{
+	if (!ft_strncmp(line, "F ", 2))
+	{
+		if (game.floor_color != -1)
+			ft_error("ERROR: floor color duplicated", game);
+		game.floor_color = parse_rgb(line + 2, game); 
+	}
+	else if (!ft_strncmp(line, "C ", 2))
+	{
+		if (game.ceiling_color != -1)
+			ft_error("ERROR: ceiling color duplicated", game);
+		game.ceiling_color = parse_rgb(line + 2, game);
+	}
+}
+
 void	save_textura(char *line, t_map game)
 {
 	if (!ft_strncmp(line, "NO", 3))
@@ -21,24 +58,11 @@ void	save_textura(char *line, t_map game)
 		game.we = ft_strdup(line + 3);
 	}
 	else if (!ft_strncmp(line, "EA", 3))
-	{
+	   {
 		if (game.ea)
 			ft_error("ERROR: EA duplicated", game);
 		game.ea = ft_strdup(line + 3);
 	}
-}
-
-int	is_textura(char *line)
-{
-	if (!ft_strncmp(line, "NO", 3))
-		return (1);
-	if (!ft_strncmp(line, "SO", 3))
-		return (1);
-	if (!ft_strncmp(line, "WE", 3))
-		return (1);
-	if (!ft_strncmp(line, "EA", 3))
-		return (1);
-	return (0);
 }
 
 static void init_map(char *line, t_map game)
@@ -69,7 +93,7 @@ static void	add_map_line(char *line, t_map game)
 	}
 	new_map[i] = ft_strdup(line);
 	new_map[i + 1] = NULL;
-	free(game->map);
+	free(game.map);
 	game.map = new_map;
 }
 
