@@ -17,7 +17,7 @@
 
 //fractol
 # define WIDTH	1080
-# define HEIGHT	10000
+# define HEIGHT	1000
 
 //colors
 # define BLACK       0x000000  // RGB(0, 0, 0)

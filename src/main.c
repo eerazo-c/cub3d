@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
+#include <stdio.h>
 
 void	check_arg(int argc, char **argv)
 {
@@ -71,6 +72,8 @@ int	main(int argc, char **argv)
 	check_arg(argc, argv);
 	ft_bzero(&game, sizeof(t_map));
 	parse_cub(argv[1], game);
+	printf("TESTEANDO f, %c\n", game.floor_color);
+	printf("TESTEANDO c, %c\n", game.ceiling_color);
 // cambiar para 3d	read_map(argv, &game);
 //  modificar para 3d	check_map_empty(&game);
 //  check_map(&game);

@@ -7,7 +7,7 @@
 int r = 220
 int g = 100
 int b = 0
-   
+  
 comprobar 0–255
    
 (r << 16) | (g << 8) | b
