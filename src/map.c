@@ -37,7 +37,7 @@ void	save_color(char *line, t_map game)
 	}
 }
 
-void	save_textura(char *line, t_map game)
+void	save_texture(char *line, t_map game)
 {
 	if (!ft_strncmp(line, "NO", 3))
 	{

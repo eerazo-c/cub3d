@@ -152,7 +152,7 @@ void	parse_header_or_map(char *line, t_map game);
 
 //map
 void	save_map_line(char *line, t_map game);
-void	save_textura(char *line, t_map game);
+void	save_texture(char *line, t_map game);
 void	save_color(char *line, t_map game);
 int		parse_rgb(char *str, t_map game);
 

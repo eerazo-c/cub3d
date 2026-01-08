@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	is_textura(char *line)
+int	is_texture(char *line)
 {
 	if (!ft_strncmp(line, "NO", 3))
 		return (1);
