@@ -23,13 +23,13 @@ int		parse_rgb(char *str, t_map *game)
 
 void	save_color(char *line, t_map *game)
 {
-	if (ft_strncmp(line, "F ", 2))
+	if (ft_strchr(line, 'F'))
 	{
 		if (game->floor_color != -1)
 			ft_error("ERROR: floor color duplicated", *game);
 		game->floor_color = parse_rgb(line + 2, game); 
 	}
-	else if (ft_strncmp(line, "C ", 2))
+	else if (ft_strchr(line, 'C'))
 	{
 		if (game->ceiling_color != -1)
 			ft_error("ERROR: ceiling color duplicated", *game);

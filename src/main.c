@@ -74,6 +74,10 @@ int	main(int argc, char **argv)
 	parse_cub(argv[1], &game);
 	printf("TESTEANDO f, %c\n", game.floor_color);
 	printf("TESTEANDO c, %c\n", game.ceiling_color);
+	printf("NO = %s\n", game.no);
+	printf("SO = %s\n", game.so);
+	printf("WE = %s\n", game.we);
+	printf("EA = %s\n", game.ea);
 // cambiar para 3d	read_map(argv, &game);
 //  modificar para 3d	check_map_empty(&game);
 //  check_map(&game);
