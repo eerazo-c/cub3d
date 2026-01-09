@@ -77,7 +77,7 @@ void	parse_cub(char *file, t_map *game)
 	//	printf("LINEA LEIDA -> [%s]\n", line);
 		parse_line(line, game);
 		free(line);
-		line = get_next_lin e(fd);
+		line = get_next_line(fd);
 	}
 	close(fd);
 }

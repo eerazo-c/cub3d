@@ -39,25 +39,25 @@ void	save_color(char *line, t_map *game)
 
 void	save_texture(char *line, t_map *game)
 {
-	if (ft_strncmp(line, "NO", 3))
+	if (ft_strchr(line, 'N'))
 	{
 		if (game->no)
 			ft_error("ERROR: NO duplicated", *game);
 		game->no = ft_strdup(line + 3);
 	}
-	else if (ft_strncmp(line, "SO", 3))
+	else if (ft_strchr(line, 'S'))
 	{
 		if (game->so)
 			ft_error("ERROR: SO duplicated", *game);
 		game->so = ft_strdup(line + 3);
 	}
-	else if (ft_strncmp(line, "WE", 3))
+	else if (ft_strchr(line, 'W'))
 	{
 		if (game->we)
 			ft_error("ERROR: WE duplicated", *game);
 		game->we = ft_strdup(line + 3);
 	}
-	else if (ft_strncmp(line, "EA", 3))
+	else if (ft_strchr(line, 'E'))
 	   {
 		if (game->ea)
 			ft_error("ERROR: EA duplicated", *game);
