@@ -18,7 +18,7 @@ int		parse_rgb(char *str, t_map *game)
 
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		ft_error("ERROR: RGB values out of range", *game);
-	free(rgb);
+	cub_free(rgb);
 	color_hex = (((unsigned int)r << 16) | ((unsigned int)g << 8) | b);
 	return (color_hex);
 }

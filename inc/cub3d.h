@@ -91,28 +91,24 @@ typedef struct s_map
 
 }				t_map;
 //PROTOTIPO_FUNCIONES
-
+//main
 void	check_arg(int argc, char **argv);
 int		check_filename(char	*filename);
-void	ft_error(char *msg, t_map game);
-void	ft_error_fd(char *msg, int fd);
-void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
-
 void	init_all(t_map *game);
 void	init_window(t_map *game);
+//void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
-char	*read_line(int fd);
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-void	parse_line(char *line, t_map *game);
-void	save_texture(char *line, t_map *game);
 //parse_cub
 void	parse_cub(char *file, t_map *game);
 void	parse_header_or_map(char *line, t_map *game);
+char	*read_line(int fd);
+void	parse_line(char *line, t_map *game);
 
 //map
 void	save_map_line(char *line, t_map *game);
 void	save_texture(char *line, t_map *game);
 void	save_color(char *line, t_map *game);
+void	save_texture(char *line, t_map *game);
 int		parse_rgb(char *str, t_map *game);
 
 //detector
@@ -120,5 +116,12 @@ int		is_empty_line(char *line);
 int		is_map_line(char *line);
 int		is_color(char *line);
 int		is_texture(char *line);
+
+//utils
+void	cub_free(char **str);
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void	ft_error(char *msg, t_map game);
+void	ft_error_fd(char *msg, int fd);
+
 
 #endif

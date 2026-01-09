@@ -11,6 +11,20 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
+void	cub_free(char **str)
+{
+	int i;
+
+	i = 0;
+	while (!str)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*new;
