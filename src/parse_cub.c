@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	parse_header_or_map(char *line, t_map game)
+void	parse_header_or_map(char *line, t_map *game)
 {
 	if (is_empty_line(line))
 		return ;
@@ -21,16 +21,16 @@ void	parse_header_or_map(char *line, t_map game)
 		save_color(line, game);
 	else if (is_map_line(line))
 	{
-		game.map_started = 1;
+		game->map_started = 1;
 		save_map_line(line, game);
 	}
 	else
-		ft_error("ERROR: invalid line in .cub", game);
+		ft_error("ERROR: invalid line in .cub", *game);
 }
 
-void	parse_line(char *line, t_map game)
+void	parse_line(char *line, t_map *game)
 {
-	if (!game.map_started)
+	if (!game->map_started)
 		parse_header_or_map(line, game);
 	else
 		save_map_line(line, game);
@@ -62,7 +62,7 @@ char *read_line(int fd)
 }
 */
 
-void	parse_cub(char *file, t_map game)
+void	parse_cub(char *file, t_map *game)
 {
 	int		fd;
 	char	*line;
