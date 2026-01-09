@@ -6,6 +6,7 @@ int		parse_rgb(char *str, t_map *game)
 	int r;
 	int g;
 	int b;
+	unsigned int color_hex;
 
 	rgb = ft_split(str, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
@@ -18,7 +19,8 @@ int		parse_rgb(char *str, t_map *game)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		ft_error("ERROR: RGB values out of range", *game);
 	free(rgb);
-	return ((r << 16) | (g << 8) | b);
+	color_hex = (((unsigned int)r << 16) | ((unsigned int)g << 8) | b);
+	return (color_hex);
 }
 
 void	save_color(char *line, t_map *game)

@@ -29,3 +29,4 @@ comprobar 0–255
 
 funcion  ft_free   libera matrices  y char **x
 
+segmentation fault  en map.c   save_map()    linea 104
