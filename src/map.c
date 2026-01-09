@@ -103,7 +103,7 @@ static void	add_map_line(char *line, t_map *game)
 
 void	save_map_line(char *line, t_map *game)
 {
-	if (!*game->map)
+	if (!game->map)
 		init_map(line, game);
 	else
 		add_map_line(line, game);
