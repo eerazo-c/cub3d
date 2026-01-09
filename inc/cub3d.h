@@ -15,26 +15,14 @@
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
 
-//fractol
 # define WIDTH	1080
 # define HEIGHT	1000
 
-//colors
 # define BLACK       0x000000  // RGB(0, 0, 0)
 # define WHITE       0xFFFFFF  // RGB(255, 255, 255)
 # define RED         0xFF0000  // RGB(255, 0, 0)
 # define GREEN       0x00FF00  // RGB(0, 255, 0)
 # define BLUE        0x0000FF  // RGB(0, 0, 255)
-
-// Psychedelic colors
-# define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
-# define LIME_SHOCK      0xCCFF00  // A blinding lime
-# define NEON_ORANGE     0xFF6600  // A blazing neon orange
-# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple 
-# define AQUA_DREAM 0x33CCCC  // A bright turquoise
-# define HOT_PINK        0xFF66B2  // As the name suggests!
-# define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-# define LAVA_RED        0xFF3300  // A bright, molten red//
 
 # define ESC 65307
 # define CTR 65507
@@ -46,34 +34,6 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_W 119
-//struct  cosas fractol
-/*
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*pixels_ptr;
-	int		bpp;
-	int		end;
-	int		line_len;
-}				t_img;
-
-typedef struct s_plano
-{
-	char	*name;
-	void	*mlx;
-	void	*mlx_win;
-	t_img	img;
-	double	escape_value;
-	int		interations_definition;
-	double	shift_x;
-	double	shift_y;
-	double	zoom;
-	double	julia_x;
-	double	julia_y;
-	int		move_act;
-
-}		t_plano;
-*/
 
 typedef struct s_colores
 {
@@ -120,12 +80,11 @@ typedef struct s_map
 	char		*ea;
 	char		**map;
 	int			floor_color;
+	int			floor_exist;
+	int			ceiling_exist;
 	int			ceiling_color;
 	int			map_started;
 //	char		*raw_map; esto pero por sia caso
-	size_t		height; //para guardar el alto y el ancho
-	size_t		width; // tambien
-//	t_pos		player;
 	t_img		*imgs;
 //	size_t		x;
 //	size_t		y;

@@ -8,7 +8,7 @@ int		parse_rgb(char *str, t_map *game)
 	int b;
 
 	rgb = ft_split(str, ',');
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || !rgb[3])
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
 		ft_error("ERROR: invalid RGB format", *game);
 
 	r = ft_atoi(rgb[0]);
@@ -25,15 +25,17 @@ void	save_color(char *line, t_map *game)
 {
 	if (ft_strchr(line, 'F'))
 	{
-		if (game->floor_color != -1)
+		if (game->floor_exist == 1)
 			ft_error("ERROR: floor color duplicated", *game);
-		game->floor_color = parse_rgb(line + 2, game); 
+		game->floor_color = parse_rgb(line + 2, game);
+		game->floor_exist = 1;
 	}
 	else if (ft_strchr(line, 'C'))
 	{
-		if (game->ceiling_color != -1)
+		if (game->ceiling_exist == 1)
 			ft_error("ERROR: ceiling color duplicated", *game);
 		game->ceiling_color = parse_rgb(line + 2, game);
+		game->ceiling_exist = 1;
 	}
 }
 
@@ -58,7 +60,7 @@ void	save_texture(char *line, t_map *game)
 		game->we = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'E'))
-	   {
+	{
 		if (game->ea)
 			ft_error("ERROR: EA duplicated", *game);
 		game->ea = ft_strdup(line + 3);
@@ -76,7 +78,7 @@ static void init_map(char *line, t_map *game)
 
 static void	add_map_line(char *line, t_map *game)
 {
-	char **new_map;
+	char	**new_map;
 	int		i;
 
 	i = 0;

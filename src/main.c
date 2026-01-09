@@ -71,6 +71,9 @@ int	main(int argc, char **argv)
 
 	check_arg(argc, argv);
 	ft_bzero(&game, sizeof(t_map));
+	game.floor_exist = 0;
+	game.ceiling_exist = 0;
+
 	parse_cub(argv[1], &game);
 	printf("TESTEANDO f, %c\n", game.floor_color);
 	printf("TESTEANDO c, %c\n", game.ceiling_color);

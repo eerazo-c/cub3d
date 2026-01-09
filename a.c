@@ -25,3 +25,7 @@ comprobar 0–255
 		ft_error values out of range
 	free_split(rgb);
 	return ((r << 16) | (g << 8) | b);
+
+
+funcion  ft_free   libera matrices  y char **x
+
