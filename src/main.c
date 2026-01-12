@@ -10,46 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
-#include <stdio.h>
 
-void	check_arg(int argc, char **argv)
-{
-	if (argc == 1)
-		ft_error_fd("ERROR: no map loaded", 1);
-	else if (argc == 2)
-	{
-		if (check_filename(argv[1]) == -1)
-			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
-	}
-	else
-		ft_error_fd("ERROR: number of arguments invalid", 1);
-}
-
-int	check_filename(char	*filename)
-{
-	char	*ext;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	ext = ".cub";
-	if (ft_strlen(filename) <= 4)
-		return (-1);
-	while (filename[i])
-		i++;
-	i = i - 4;
-	while (filename[i])
-	{
-		if (filename[i++] == ext[j++])
-			continue ;
-		else
-			return (-1);
-	}
-	return (0);
-}
-
-void init_player(t_map *game)
+void	init_player(t_map *game)
 {
 	size_t	i;
 	size_t	j;
@@ -78,7 +40,6 @@ void init_player(t_map *game)
 	}
 }
 
-
 void	init_all(t_map *game)
 {
 	game->mlx_ptr = mlx_init();
@@ -96,7 +57,7 @@ void	init_window(t_map *game)
 		ft_error_fd("ERROR: Window returned null", 1);
 }
 
-void init_parse(t_map *game, char *str)
+void	init_parse(t_map *game, char *str)
 {
 	ft_bzero(game, sizeof(t_map));
 	game->floor_exist = 0;

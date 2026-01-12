@@ -13,7 +13,7 @@
 
 void	cub_free(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (!str)
@@ -50,21 +50,39 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	return (new);
 }
 
-void	ft_error(char *msg, t_map game)
+void	check_arg(int argc, char **argv)
 {
-	(void)game;
-	ft_putendl_fd(msg, 1);
-	exit(1);
+	if (argc == 1)
+		ft_error_fd("ERROR: no map loaded", 1);
+	else if (argc == 2)
+	{
+		if (check_filename(argv[1]) == -1)
+			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
+	}
+	else
+		ft_error_fd("ERROR: number of arguments invalid", 1);
 }
 
-void	ft_error_fd(char *msg, int fd)
+int	check_filename(char	*filename)
 {
-	ft_putendl_fd(msg, fd);
-	exit(1);
-}
+	char	*ext;
+	int		i;
+	int		j;
 
-void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue)
-{
-	ft_putendl_fd(msg, fd);
-	exit(exitvalue);
+	i = 0;
+	j = 0;
+	ext = ".cub";
+	if (ft_strlen(filename) <= 4)
+		return (-1);
+	while (filename[i])
+		i++;
+	i = i - 4;
+	while (filename[i])
+	{
+		if (filename[i++] == ext[j++])
+			continue ;
+		else
+			return (-1);
+	}
+	return (0);
 }

@@ -15,7 +15,8 @@ CFLAGS		=	-Wall -Wextra -Werror -g -I inc/
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src
-SRCS		=	main.c utils.c parse_cub.c detector.c map.c keys.c raycast.c keys_handler.c
+SRCS		=	main.c utils.c parse_cub.c detector.c map.c keys.c \
+				raycast.c keys_handler.c calculate.c error_handler.c
 
 MLX_PATH	=	./libs/minilibx
 LIBFT_PATH	=	./libs/libft/
