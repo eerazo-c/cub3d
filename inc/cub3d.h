@@ -40,7 +40,7 @@ typedef struct s_img
     int		height;
 	int		data;             //por si falla el char addr.
 
-} t_img;
+} t_img_data;
 
 typedef struct s_player
 {
