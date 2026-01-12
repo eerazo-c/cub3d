@@ -45,31 +45,31 @@ void	save_texture(char *line, t_map *game)
 {
 	if (ft_strchr(line, 'N'))
 	{
-		if (game->no)
+		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-		game->no = ft_strdup(line + 3);
+		game->cardinal.no = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
-		if (game->so)
+		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		game->so = ft_strdup(line + 3);
+		game->cardinal.so = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
-		if (game->we)
+		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		game->we = ft_strdup(line + 3);
+		game->cardinal.we = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
-		if (game->ea)
+		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		game->ea = ft_strdup(line + 3);
+		game->cardinal.ea = ft_strdup(line + 3);
 	}
 }
 
-static void init_map(char *line, t_map *game)
+static void	init_map(char *line, t_map *game)
 {
 	game->map = malloc(sizeof(char *) * 2);
 	if (!game->map)

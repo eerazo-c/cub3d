@@ -35,32 +35,6 @@ void	parse_line(char *line, t_map *game)
 	else
 		save_map_line(line, game);
 }
-/*
-char *read_line(int fd)
-{
-	char	*buffer;
-	char	xchar;
-	int		byte;
-	int		index;
-
-	index = 0;
-	byte = read(fd, &xchar, 1);
-	buffer = malloc(sizeof(char) * 2);
-	while (byte > 0)
-	{
-		if (xchar == '\n')
-			break ;
-		buffer[index++] = xchar;
-		buffer = ft_realloc(buffer, ft_strlen(buffer) \
-				+ 1, ft_strlen(buffer) + 2);
-		byte = read(fd, &xchar, 1);
-	}
-	if ((byte <= 0) && (index == 0))
-		return (free(buffer), NULL);
-	buffer[index] = '\0';
-	return (buffer);
-}
-*/
 
 void	parse_cub(char *file, t_map *game)
 {
@@ -74,7 +48,6 @@ void	parse_cub(char *file, t_map *game)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("LINEA LEIDA -> [%s]\n", line);
 		parse_line(line, game);
 		free(line);
 		line = get_next_line(fd);

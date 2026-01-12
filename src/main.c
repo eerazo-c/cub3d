@@ -49,8 +49,39 @@ int	check_filename(char	*filename)
 	return (0);
 }
 
+void init_player(t_map *game)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'N' /* || game->map[i][j] == 'S' ||
+				game->map[i][j] == 'E' || game->map[i][j] == 'W' */)
+			{
+				game->player.pos_x = j + 0.5;
+				game->player.pos_y = i + 0.5;
+				game->player.dir_x = 0;
+				game->player.dir_y = -1;
+				game->player.plane_x = 0.60; //FOV 66 grados
+				game->player.plane_y = 0;
+				game->player.speed = 0.3;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+
 void	init_all(t_map *game)
 {
+	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		ft_error_fd("ERROR: mlx initialization failed", 1);
 	init_window(game);
@@ -65,33 +96,28 @@ void	init_window(t_map *game)
 		ft_error_fd("ERROR: Window returned null", 1);
 }
 
+void init_parse(t_map *game, char *str)
+{
+	ft_bzero(game, sizeof(t_map));
+	game->floor_exist = 0;
+	game->ceiling_exist = 0;
+	parse_cub(str, game);
+
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	game;
 
 	check_arg(argc, argv);
-	ft_bzero(&game, sizeof(t_map));
-	game.floor_exist = 0;
-	game.ceiling_exist = 0;
+	init_parse(&game, argv[1]);
+	init_all(&game);
+	init_player(&game);
+	raycasting(&game);
 
-	parse_cub(argv[1], &game);
-	printf("TESTEANDO f, %c\n", game.floor_color);
-	printf("TESTEANDO c, %c\n", game.ceiling_color);
-	printf("NO = %s\n", game.no);
-	printf("SO = %s\n", game.so);
-	printf("WE = %s\n", game.we);
-	printf("EA = %s\n", game.ea);
-// cambiar para 3d	read_map(argv, &game);
-//  modificar para 3d	check_map_empty(&game);
-//  check_map(&game);
-	game.mlx_ptr = mlx_init();
-	init_window(&game);
-// talvex 	init_imgs(&game);
 
-//puede 	draw_map(&game); 
-/*	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, player_movement, &game);
-	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, free_maps_close, &game);
-*/
+	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, handle_keypress, &game);
+	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, handle_close, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }
