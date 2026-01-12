@@ -29,13 +29,6 @@
 # define KEY_S 115
 # define KEY_W 119
 
-typedef struct s_colores
-{
-	float	x;
-	float	y;
-}	t_colores;
-
-
 typedef struct s_img
 {
     void	*img_ptr;      		
@@ -45,6 +38,8 @@ typedef struct s_img
     int		endian;        			 // Orden de los bytes (little/big endian)
     int		width;
     int		height;
+	int		data;             //por si falla el char addr.
+
 } t_img;
 
 typedef struct s_player
@@ -66,6 +61,7 @@ typedef struct s_cardinal
 	char		*we;
 	char		*ea;
 }					t_cardinal;
+
 typedef struct s_raycast
 {
     double	camera_x;      // Posición x en el plano de la cámara (-1 a 1)
@@ -93,8 +89,6 @@ typedef struct s_raycast
     int		draw_end;       // Píxel donde termina de dibujar la pared
 }   			t_raycast;
 
-
-
 typedef struct s_map
 {
 	void		*mlx_ptr; //puntero para inciar minili
@@ -109,6 +103,7 @@ typedef struct s_map
 	t_player		player;
 	t_img		*imgs;
 }				t_map;
+
 //PROTOTIPO_FUNCIONES
 
 //main
@@ -117,7 +112,6 @@ int		check_filename(char	*filename);
 void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
-//void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue); //poco se usa
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
