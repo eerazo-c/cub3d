@@ -25,6 +25,7 @@ void	cub_free(char **str)
 	}
 	free(str);
 }
+
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*new;
