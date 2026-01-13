@@ -28,7 +28,16 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_W 119
-
+/*
+typedef struct s_img_data
+{
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		size_l;
+	int		endian;
+}	t_img_data;
+*/
 typedef struct s_img_data
 {
     void	*img_ptr;      		
@@ -37,9 +46,9 @@ typedef struct s_img_data
     int		line_length;    		// Tamaño de una línea en bytes
     int		endian;        			 // Orden de los bytes (little/big endian)
     int		width;
-    int		height;
-	int		data;             //por si falla el char addr.
-
+    int		height;            //por si falla el char addr.
+	int		bpp;
+	int		size_l;
 } t_img_data;
 
 typedef struct s_player
