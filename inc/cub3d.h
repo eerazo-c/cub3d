@@ -29,7 +29,7 @@
 # define KEY_S 115
 # define KEY_W 119
 
-typedef struct s_img
+typedef struct s_img_data
 {
     void	*img_ptr;      		
     char	*addr;         		// Puntero al primer píxel (buffer de memoria)
@@ -101,7 +101,7 @@ typedef struct s_map
 	int			ceiling_color;
 	int			map_started;
 	t_player		player;
-	t_img		*imgs;
+	t_img_data		*imgs;
 }				t_map;
 
 //PROTOTIPO_FUNCIONES
