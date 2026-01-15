@@ -1,12 +1,10 @@
 #include "cub3d.h"
 
+// Calcula la altura de la línea a dibujar
 void    calculate_line_height(t_raycast *ray)
 {
-    // La altura de la pared es inversamente proporcional a la distancia
-    // Cuanto más lejos, más pequeña se ve
     ray->line_height = (int)(HEIGHT / ray->perp_wall_dist);
-    
-    // Calcular dónde empieza y termina la línea en la pantalla
+
     ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
     if (ray->draw_start < 0)
         ray->draw_start = 0;
@@ -42,16 +40,13 @@ void    calculate_step_and_side_dist(t_map *game, t_raycast *ray)
         ray->side_dist_y = (ray->map_y + 1.0 - game->player.pos_y) * ray->delta_dist_y;
     }
 }
-
+//  Calcula la distancia perpendicular a la pared y evitamos el efecto "ojo de pez"
 void    calculate_wall_distance(t_map *game, t_raycast *ray)
 {
-    // Calculamos la distancia PERPENDICULAR a la pared
-    // (no la distancia euclidiana, para evitar el efecto "ojo de pez")
-    
-    if (ray->side == 0)  // Tocamos un lado X (vertical)
-        ray->perp_wall_dist = (ray->map_x - game->player.pos_x + 
+if (ray->side == 0)
+        ray->perp_wall_dist = (ray->map_x - game->player.pos_x +
                                (1 - ray->step_x) / 2) / ray->ray_dir_x;
-    else  // Tocamos un lado Y (horizontal)
+    else
         ray->perp_wall_dist = (ray->map_y - game->player.pos_y + 
                                (1 - ray->step_y) / 2) / ray->ray_dir_y;
 }

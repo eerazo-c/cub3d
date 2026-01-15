@@ -86,3 +86,13 @@ int	check_filename(char	*filename)
 	}
 	return (0);
 }
+
+void	my_pixel_put(t_map *game, int x, int y, int color)
+{
+	char *dst;
+
+   if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return;
+   dst = game->img->addr + (y * game->img->line_length + x * (game->img->bits_per_pixel / 8));
+   *(unsigned int *)dst = color;
+}
