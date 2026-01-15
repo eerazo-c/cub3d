@@ -96,22 +96,23 @@ static void	add_map_line(char *line, t_map *game)
 	char	**new_map;
 	int		i;
 
+	int aaa = ft_strlen(line);
 	i = 0;
-	while (game->map[i])
-		i++;
-	new_map = malloc(sizeof(char *) * (i + 2));
+	/*while (game->map[i])
+		i++;*/
+	new_map = malloc(sizeof(char *) * (aaa));
 	if (!new_map)
 		ft_error("ERROR: malloc failed, en add map line", *game);
-	i = 0;
 	while (game->map[i])
 	{
 		new_map[i] = game->map[i];
 		i++;
 	}
-	new_map[i] = ft_strdup(line);
+	new_map[i ] = ft_strdup(line);
 	new_map[i + 1] = NULL;
 	free(game->map);
 	game->map = new_map;
+	free(new_map);
 }
 
 void	save_map_line(char *line, t_map *game)
