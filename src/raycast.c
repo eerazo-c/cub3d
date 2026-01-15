@@ -16,6 +16,7 @@ void    raycasting(t_map *game)
         draw_vertical_line(game, &ray, x);
 		x++;
 	}
+    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->imgs, 0, 0);
 }
 
 void    init_raycast(t_map *game, t_raycast *ray, int x)
@@ -62,17 +63,12 @@ void    draw_vertical_line(t_map *game, t_raycast *ray, int x)
     // Elegir color según el lado (para dar sensación de profundidad)
     if (ray->side == 0)
         color = 0xFF0000;     // Paredes verticales (norte) en rojo
-    else if (ray->side == 1)
+    else
         color = 0x990000;     // Paredes horizontales (este) en azul
-    else if (ray->side == 2)
-        color = 0xFFFFFF;      // paredes verticales (oeste) en blanco
-    else if (ray->side == 3)
-        color = 0x000000;      // paredes (sur) en negro
-
     y = 0;
     while (y < ray->draw_start)
     {
-        my_pixel_put(game->mlx_ptr, game->win_ptr, x, y, game->ceiling_color);
+        my_pixel_put(game, x, y, game->ceiling_color);
         y++;
     }
     
@@ -81,14 +77,22 @@ void    draw_vertical_line(t_map *game, t_raycast *ray, int x)
     y = ray->draw_start;
     while (y < ray->draw_end)
     {
-        mlx_pixel_put(game->mlx_ptr, game->win_ptr, x, y, color);
+        my_pixel_put(game, x, y, color);
         y++;
     }
 
     y = ray->draw_end;
     while (y < HEIGHT)
     {
-        my_pixel_put(game->mlx_ptr, game->win_ptr, x, y, game->floor_color);
+        my_pixel_put(game, x, y, game->floor_color);
         y++;
     }
+}
+
+void cleanup_raycast(t_map *game)
+{
+    int total_bytes;
+    
+    total_bytes = game->imgs->line_length * game->imgs->height;
+    ft_memset(game->imgs->addr, 0, total_bytes);  
 }

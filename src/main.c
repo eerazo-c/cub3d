@@ -73,6 +73,7 @@ int	main(int argc, char **argv)
 	check_arg(argc, argv);
 	init_parse(&game, argv[1]);
 	init_all(&game);
+	init_imgs(&game);
 	init_player(&game);
 	init_imgs(&game);
 	raycasting(&game);

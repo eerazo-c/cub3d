@@ -93,6 +93,6 @@ void	my_pixel_put(t_map *game, int x, int y, int color)
 
    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return;
-   dst = game->img->addr + (y * game->img->line_length + x * (game->img->bits_per_pixel / 8));
+   dst = game->imgs->addr + (y * game->imgs->line_length + x * (game->imgs->bpp / 8));
    *(unsigned int *)dst = color;
 }

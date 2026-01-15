@@ -1,8 +1,8 @@
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./imgs/greystone.xpm
+SO ./imgs/wood.xpm
+WE ./imgs/purplestone.xpm
+EA ./imgs/redbrick.xpm
 
 F 121,121,121
 C 0,255,0
