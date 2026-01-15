@@ -63,7 +63,8 @@ void	init_parse(t_map *game, char *str)
 	game->floor_exist = 0;
 	game->ceiling_exist = 0;
 	parse_cub(str, game);
-
+	if (!game->map)
+		printf("\033[1;31mERROR\033[0m\n:malloc failed '%p\n'", game);
 }
 
 int	main(int argc, char **argv)

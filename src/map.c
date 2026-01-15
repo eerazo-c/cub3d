@@ -69,13 +69,26 @@ void	save_texture(char *line, t_map *game)
 	}
 }
 
+/*
+int lenn(char **s)
+{
+	int i;
+
+	i = 0;
+	while (s[i][0] != '\0')
+		i++;
+	return (i);
+}
+*/
+
 static void	init_map(char *line, t_map *game)
 {
-	game->map = malloc(sizeof(char *) * 2);
+	//ft_strlen(line);
+	game->map = malloc(sizeof(char *) * ft_strlen(line));
 	if (!game->map)
 		ft_error("ERROR: malloc failed", *game);
 	game->map[0] = ft_strdup(line);
-	game->map[10] = NULL;
+	game->map[1] = NULL;
 }
 
 static void	add_map_line(char *line, t_map *game)
