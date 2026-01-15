@@ -108,8 +108,8 @@ typedef struct s_map
 	int			ceiling_exist;
 	int			ceiling_color;
 	int			map_started;
-	t_player		player;
-	t_img_data		*imgs;
+	t_player	player;
+	t_img_data	*imgs;
 }				t_map;
 
 //PROTOTIPO_FUNCIONES
@@ -145,27 +145,27 @@ void	cub_free(char **str);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	ft_error(char *msg, t_map game);
 void	ft_error_fd(char *msg, int fd);
+void	my_pixel_put(t_map *game, int x, int y, int color);
 
 //test
-void    calculate_line_height(t_raycast *ray);
-void    draw_vertical_line(t_map *game, t_raycast *ray, int x);
-void    calculate_wall_distance(t_map *game, t_raycast *ray);
-void    perform_dda(t_map *game, t_raycast *ray);
-void    calculate_step_and_side_dist(t_map *game, t_raycast *ray);
+void	calculate_line_height(t_raycast *ray);
+void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
+void	calculate_wall_distance(t_map *game, t_raycast *ray);
+void	perform_dda(t_map *game, t_raycast *ray);
+void	calculate_step_and_side_dist(t_map *game, t_raycast *ray);
 void	init_raycast(t_map *game, t_raycast *ray, int x);
 void	raycasting(t_map *game);
 void	init_player(t_map *game);
 
 //keyhooks
-int     handle_keypress(int keycode, t_map *game);
-int     handle_close(t_map *game);
-void    move_forward(t_map *game);
-void    move_backward(t_map *game);
-void    move_left(t_map *game);
-void    move_right(t_map *game);
-void    rotate_left(t_map *game);
-void    rotate_right(t_map *game);
- 
+int		handle_keypress(int keycode, t_map *game);
+int		handle_close(t_map *game);
+void	move_forward(t_map *game);
+void	move_backward(t_map *game);
+void	move_left(t_map *game);
+void	move_right(t_map *game);
+void	rotate_left(t_map *game);
+void	rotate_right(t_map *game);
 //init
 void	init_imgs(t_map *game);
 int		exist_obj(char c);
