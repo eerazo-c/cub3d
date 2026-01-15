@@ -42,12 +42,11 @@ typedef struct s_img_data
 {
     void	*img_ptr;      		
     char	*addr;         		// Puntero al primer píxel (buffer de memoria)
-    int		bits_per_pixel;	// Número de bits por píxel (BPP), usualmente 32
+    int		bpp;	// Número de bits por píxel (BPP), usualmente 32
     int		line_length;    		// Tamaño de una línea en bytes
     int		endian;        			 // Orden de los bytes (little/big endian)
     int		width;
     int		height;            //por si falla el char addr.
-	int		bpp;
 	int		size_l;
 } t_img_data;
 

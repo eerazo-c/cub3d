@@ -16,7 +16,7 @@ void	init_imgs(t_map *game)
 	int	height;
 	int	width;
 
-	game->imgs = ft_calloc(5, sizeof(t_img_data));
+	game->imgs = ft_calloc(sizeof(t_img_data), 4);
 
 	game->imgs[0].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			"imgs/greystone.xpm", &width, &height);
