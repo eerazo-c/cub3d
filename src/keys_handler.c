@@ -16,7 +16,7 @@ int handle_keypress(int keycode, t_map *game)
         rotate_left(game);
     if (keycode == K_RIGHT)
         rotate_right(game);       
-    printf("Player Position: (%.2f, %.2f) Direction: (%.2f, %.2f)\n",
+    printf("Player Position: (x->%.2f, y->%.2f) Direction: (x->%.2f, y->%.2f)\n",
            game->player.pos_x, game->player.pos_y,
            game->player.dir_x, game->player.dir_y);
     raycasting(game);
@@ -38,7 +38,7 @@ void    rotate_left(t_map *game)
     
     // Velocidad de rotación (en radianes)
     // 0.05 radianes ≈ 2.86 grados por frame
-    rot_speed = -0.05;
+    rot_speed = -0.10;
     
     // Guardar valores antiguos
     old_dir_x = game->player.dir_x;
@@ -68,7 +68,7 @@ void    rotate_right(t_map *game)
     double rot_speed;
     
     // Velocidad de rotación (negativa para ir en sentido horario)
-    rot_speed = 0.05;
+    rot_speed = 0.10;
     
     // Guardar valores antiguos
     old_dir_x = game->player.dir_x;

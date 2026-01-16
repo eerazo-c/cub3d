@@ -50,6 +50,43 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	return (new);
 }
 
+void	check_arg(int argc, char **argv)
+{
+	if (argc == 1)
+		ft_error_fd("ERROR: no map loaded", 1);
+	else if (argc == 2)
+	{
+		if (check_filename(argv[1]) == -1)
+			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
+	}
+	else
+		ft_error_fd("ERROR: number of arguments invalid", 1);
+}
+
+int	check_filename(char	*filename)
+{
+	char	*ext;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	ext = ".cub";
+	if (ft_strlen(filename) <= 4)
+		return (-1);
+	while (filename[i])
+		i++;
+	i = i - 4;
+	while (filename[i])
+	{
+		if (filename[i++] == ext[j++])
+			continue ;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
 void	my_pixel_put(t_map *game, int x, int y, int color)
 {
 	char	*dst;

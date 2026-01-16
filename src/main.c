@@ -11,6 +11,36 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
+
+void	check_player_dir(t_map *game, int x, int y, int dir)
+{
+	if (dir == 'N')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+	}
+	else if (dir == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+	}
+	else if (dir == 'E')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+	}
+	else if (dir == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+	}
+	game->player.pos_x = x + 0.5;
+	game->player.pos_y = y + 0.5;
+		
+}
+
+
+
 void	init_player(t_map *game)
 {
 	size_t	i;
@@ -22,16 +52,13 @@ void	init_player(t_map *game)
 		j = 0;
 		while (game->map[i][j])
 		{
-			if (game->map[i][j] == 'N' /* || game->map[i][j] == 'S' ||
-				game->map[i][j] == 'E' || game->map[i][j] == 'W' */)
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
+				game->map[i][j] == 'E' || game->map[i][j] == 'W' )
 			{
-				game->player.pos_x = j + 0.5;
-				game->player.pos_y = i + 0.5;
-				game->player.dir_x = 0;
-				game->player.dir_y = -1;
-				game->player.plane_x = 0.60; //FOV 66 grados
+				check_player_dir(game,i, j ,game->map[i][j]);
+				game->player.plane_x = 0.60;
 				game->player.plane_y = 0;
-				game->player.speed = 0.3;
+				game->player.speed = 0.50;
 				return ;
 			}
 			j++;
