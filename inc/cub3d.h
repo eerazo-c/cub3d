@@ -146,6 +146,7 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	ft_error(char *msg, t_map game);
 void	ft_error_fd(char *msg, int fd);
 void	my_pixel_put(t_map *game, int x, int y, int color);
+int		get_texture_color(t_img_data *tex, int tx, int ty);
 
 //test
 void	calculate_line_height(t_raycast *ray);

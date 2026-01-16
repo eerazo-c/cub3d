@@ -91,8 +91,33 @@ void	my_pixel_put(t_map *game, int x, int y, int color)
 {
 	char *dst;
 
-   if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return;
-   dst = game->imgs->addr + (y * game->imgs->line_length + x * (game->imgs->bpp / 8));
-   *(unsigned int *)dst = color;
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	dst = game->imgs[0].addr + (y * game->imgs[0].line_length
+			+ x * (game->imgs[0].bpp / 8));
+	*(unsigned int *)dst = color;
+}
+
+int	get_texture_color(t_img_data *tex, int tx, int ty)
+{
+	unsigned char	*ptr;
+	int				bpp;
+	int				offset;
+	unsigned int	color;
+
+	if (!tex || !tex->addr)
+		return (0);
+	if (tx < 0)
+		tx = 0;
+	if (ty < 0)
+		ty = 0;
+	if (tx >= tex->width)
+		tx = tex->width - 1;
+	if (ty >= tex->height)
+		ty = tex->height - 1;
+	bpp = tex->bpp / 8;
+	offset = ty * tex->line_length + tx * bpp;
+	ptr = (unsigned char *)tex->addr + offset;
+	color = *(unsigned int *)ptr;
+	return ((int)color);
 }

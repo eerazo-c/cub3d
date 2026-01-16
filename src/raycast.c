@@ -1,22 +1,26 @@
 #include "cub3d.h"
 
-void    raycasting(t_map *game)
+void	raycasting(t_map *game)
 {
 	t_raycast	ray;
 	int			x;
+	int			total_bytes;
 
+	total_bytes = game->imgs[0].line_length * game->imgs[0].height;
+	ft_memset(game->imgs[0].addr, 0, total_bytes);
 	x = 0;
 	while (x < WIDTH)
 	{
 		init_raycast(game, &ray, x);
 		calculate_step_and_side_dist(game, &ray);
-        perform_dda(game, &ray);
-        calculate_wall_distance(game, &ray);
-        calculate_line_height(&ray);
-        draw_vertical_line(game, &ray, x);
+		perform_dda(game, &ray);
+		calculate_wall_distance(game, &ray);
+		calculate_line_height(&ray);
+		draw_vertical_line(game, &ray, x);
 		x++;
 	}
-    mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->imgs, 0, 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+			game->imgs[0].img_ptr, 0, 0);
 }
 
 void    init_raycast(t_map *game, t_raycast *ray, int x)
@@ -55,98 +59,76 @@ void    perform_dda(t_map *game, t_raycast *ray)
     }
 }
 
-void    draw_vertical_line(t_map *game, t_raycast *ray, int x)
+void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
 {
-    int y;
-    int color;
-    
-    // Elegir color según el lado (para dar sensación de profundidad)
-    if (ray->side == 0)
-        color = 0xFF0000;     // Paredes verticales (norte) en rojo
-    else
-        color = 0x990000;     // Paredes horizontales (este) en azul
-    y = 0;
-    while (y < ray->draw_start)
-    {
-        my_pixel_put(game, x, y, game->ceiling_color);
-        y++;
-    }
-    
-    // Dibujar la pared
-    // TODO colocar las texturas para las diferentes paredes dependiendo de la dirección 
-    y = ray->draw_start;
-    while (y < ray->draw_end)
-    {
-        my_pixel_put(game, x, y, color);
-        y++;
-    }
+	int			y;
+	int			color;
+	t_img_data	*texture;
+	int			tex_x;
+	double		wall_x;
+	double		tex_step;
+	double		tex_pos;
+	int			tex_y;
 
-    y = ray->draw_end;
-    while (y < HEIGHT)
-    {
-        my_pixel_put(game, x, y, game->floor_color);
-        y++;
-    }
+	// Elegir textura según lado y dirección del rayo
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir_x > 0)
+			texture = &game->imgs[2];
+		else
+			texture = &game->imgs[3];
+	}
+	else
+	{
+		if (ray->ray_dir_y > 0)
+			texture = &game->imgs[1];
+		else
+			texture = &game->imgs[4];
+	}
+	// Calcular wall_x: punto exacto de impacto en la pared (0..1)
+	if (ray->side == 0)
+		wall_x = game->player.pos_y + ray->perp_wall_dist * ray->ray_dir_y;
+	else
+		wall_x = game->player.pos_x + ray->perp_wall_dist * ray->ray_dir_x;
+	wall_x -= floor(wall_x);
+	// tex_x: columna de la textura
+	tex_x = (int)(wall_x * (double)texture->width);
+	if ((ray->side == 0 && ray->ray_dir_x > 0)
+		|| (ray->side == 1 && ray->ray_dir_y < 0))
+		tex_x = texture->width - tex_x - 1;
+	// Calcular paso vertical y posición inicial en la textura
+	tex_step = (double)texture->height / (double)ray->line_height;
+	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex_step;
+	// Dibujar techo
+	y = 0;
+	while (y < ray->draw_start)
+	{
+		my_pixel_put(game, x, y, game->ceiling_color);
+		y++;
+	}
+	// Dibujar la pared con textura
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		tex_y = (int)tex_pos;
+		if (tex_y < 0)
+			tex_y = 0;
+		if (tex_y >= texture->height)
+			tex_y = texture->height - 1;
+		color = get_texture_color(texture, tex_x, tex_y);
+		my_pixel_put(game, x, y, color);
+		tex_pos += tex_step;
+		y++;
+	}
+	// Dibujar suelo
+	y = ray->draw_end;
+	while (y < HEIGHT)
+	{
+		my_pixel_put(game, x, y, game->floor_color);
+		y++;
+	}
 }
-/*
-void    draw_vertical_line_with_texture(t_map *game, t_raycast *ray, int x)
-{
-    int y;
-    int tex_x;      // Posición X en la textura
-    int tex_y;      // Posición Y en la textura
-    int color;
-    t_img_data *texture; 
-    
-    // Elegir textura según la dirección
-    if (ray->side == 0)  // Norte o Sur
-    {
-        if (ray->ray_dir_x > 0)
-            texture = &game->imgs[0];   // Mirando este
-        else
-            texture = &game->imgs[1];   // Mirando oeste
-    }
-    else  // Este o Oeste
-    {
-        if (ray->ray_dir_y > 0)
-            texture = &game->imgs[2];  // Mirando sur
-        else
-            texture = &game->imgs[3];  // Mirando norte
-    }
-    
-    // Calcular tex_x (qué columna de la textura usar)
-    // ... cálculos ...
-    
-    // Dibujar techo
-    y = 0;
-    while (y < ray->draw_start)
-    {
-        my_pixel_put(game, x, y, game->ceiling_color);
-        y++;
-    }
-    
-    // Dibujar pared con textura
-    y = ray->draw_start;
-    while (y <= ray->draw_end)
-    {
-        // Calcular qué fila de la textura usar
-        tex_y = (y - ray->draw_start) * texture->height / ray->line_height;
-        
-        // Obtener el color de la textura
-        color = get_texture_color(texture, tex_x, tex_y);
-        
-        my_pixel_put(game, x, y, color);
-        y++;
-    }
-    
-    // Dibujar suelo
-    y = ray->draw_end + 1;
-    while (y < HEIGHT)
-    {
-        my_pixel_put(game, x, y, game->floor_color);
-        y++;
-    }
-}
-*/
+
 void cleanup_raycast(t_map *game)
 {
     int total_bytes;
