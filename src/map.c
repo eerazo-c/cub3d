@@ -99,7 +99,8 @@ static void	add_map_line(char *line, t_map *game)
 	int aaa = ft_strlen(line);
 	i = 0;
 	/*while (game->map[i])
-		i++;*/
+		i++;
+	*/
 	new_map = malloc(sizeof(char *) * (aaa));
 	if (!new_map)
 		ft_error("ERROR: malloc failed, en add map line", *game);
