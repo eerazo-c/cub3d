@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   detector.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/16 17:52:08 by elerazo-          #+#    #+#             */
+/*   Updated: 2026/01/16 17:54:33 by elerazo-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "cub3d.h"
 
 int	is_texture(char *line)
@@ -36,7 +47,7 @@ int	is_map_line(char *line)
 
 int	is_empty_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
@@ -45,5 +56,12 @@ int	is_empty_line(char *line)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+int	exist_obj(char c)
+{
+	if ((c != 'N' || c != 'S' || c != 'E' || c != 'W' ) && c != '1' && c != '0')
+		return (-1);
 	return (1);
 }
