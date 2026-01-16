@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-
 void	check_player_dir(t_map *game, int x, int y, int dir)
 {
 	if (dir == 'N')
@@ -38,8 +37,6 @@ void	check_player_dir(t_map *game, int x, int y, int dir)
 	game->player.pos_y = y + 0.5;
 		
 }
-
-
 
 void	init_player(t_map *game)
 {
@@ -104,7 +101,6 @@ int	main(int argc, char **argv)
 	init_imgs(&game);
 	init_player(&game);
 	raycasting(&game);
-
 
 	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, handle_keypress, &game);
 	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, handle_close, &game);

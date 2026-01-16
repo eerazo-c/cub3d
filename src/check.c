@@ -55,19 +55,6 @@ int	parse_rgb(char *str, t_map *game)
 	return (color_hex);
 }
 
-void	check_arg(int argc, char **argv)
-{
-	if (argc == 1)
-		ft_error_fd("ERROR: no map loaded", 1);
-	else if (argc == 2)
-	{
-		if (check_filename(argv[1]) == -1)
-			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
-	}
-	else
-		ft_error_fd("ERROR: number of arguments invalid", 1);
-}
-
 int	check_filename(char	*filename)
 {
 	char	*ext;
@@ -91,3 +78,18 @@ int	check_filename(char	*filename)
 	}
 	return (0);
 }
+
+void	check_arg(int argc, char **argv)
+{
+	if (argc == 1)
+		ft_error_fd("ERROR: no map loaded", 1);
+	else if (argc == 2)
+	{
+		if (check_filename(argv[1]) == -1)
+			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
+	}
+	else
+		ft_error_fd("ERROR: number of arguments invalid", 1);
+}
+
+
