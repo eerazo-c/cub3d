@@ -88,7 +88,65 @@ void    draw_vertical_line(t_map *game, t_raycast *ray, int x)
         y++;
     }
 }
-
+/*
+void    draw_vertical_line_with_texture(t_map *game, t_raycast *ray, int x)
+{
+    int y;
+    int tex_x;      // Posición X en la textura
+    int tex_y;      // Posición Y en la textura
+    int color;
+    t_img_data *texture; 
+    
+    // Elegir textura según la dirección
+    if (ray->side == 0)  // Norte o Sur
+    {
+        if (ray->ray_dir_x > 0)
+            texture = &game->imgs[0];   // Mirando este
+        else
+            texture = &game->imgs[1];   // Mirando oeste
+    }
+    else  // Este o Oeste
+    {
+        if (ray->ray_dir_y > 0)
+            texture = &game->imgs[2];  // Mirando sur
+        else
+            texture = &game->imgs[3];  // Mirando norte
+    }
+    
+    // Calcular tex_x (qué columna de la textura usar)
+    // ... cálculos ...
+    
+    // Dibujar techo
+    y = 0;
+    while (y < ray->draw_start)
+    {
+        my_pixel_put(game, x, y, game->ceiling_color);
+        y++;
+    }
+    
+    // Dibujar pared con textura
+    y = ray->draw_start;
+    while (y <= ray->draw_end)
+    {
+        // Calcular qué fila de la textura usar
+        tex_y = (y - ray->draw_start) * texture->height / ray->line_height;
+        
+        // Obtener el color de la textura
+        color = get_texture_color(texture, tex_x, tex_y);
+        
+        my_pixel_put(game, x, y, color);
+        y++;
+    }
+    
+    // Dibujar suelo
+    y = ray->draw_end + 1;
+    while (y < HEIGHT)
+    {
+        my_pixel_put(game, x, y, game->floor_color);
+        y++;
+    }
+}
+*/
 void cleanup_raycast(t_map *game)
 {
     int total_bytes;
