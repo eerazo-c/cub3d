@@ -40,12 +40,12 @@ void	parse_cub(char *file, t_map *game)
 {
 	int		fd;
 	char	*line;
-	int 	i = 0;  ////////// para debugging
+	int		i;
 
+	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error_fd("ERROR: cannot open file", 1);
-
 	line = get_next_line(fd);
 	while (line)
 	{
