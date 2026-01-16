@@ -40,6 +40,7 @@ void	parse_cub(char *file, t_map *game)
 {
 	int		fd;
 	char	*line;
+	int 	i = 0;  ////////// para debugging
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -51,6 +52,7 @@ void	parse_cub(char *file, t_map *game)
 		parse_line(line, game);
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	close(fd);
 }

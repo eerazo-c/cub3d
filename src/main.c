@@ -76,7 +76,6 @@ int	main(int argc, char **argv)
 	init_all(&game);
 	init_imgs(&game);
 	init_player(&game);
-	init_imgs(&game);
 	raycasting(&game);
 
 
