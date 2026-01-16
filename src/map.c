@@ -112,7 +112,7 @@ static void	add_map_line(char *line, t_map *game)
 	new_map[i + 1] = NULL;
 	free(game->map);
 	game->map = new_map;
-	free(new_map);
+	//free(new_map);
 }
 
 void	save_map_line(char *line, t_map *game)

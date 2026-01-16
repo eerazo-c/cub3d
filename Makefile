@@ -11,7 +11,7 @@
 # **************************************************************************** #
 NAME		=	cub3d
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g -I inc/ 
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g -I inc/ 
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src
