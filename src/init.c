@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
-
 void	init_imgs(t_map *game)
 {
 	int	i;
@@ -76,4 +75,11 @@ void	init_imgs(t_map *game)
 	game->imgs[i].line_length = game->imgs[i].size_l;
 	game->imgs[i].width = width;
 	game->imgs[i].height = height;
+}
+
+int	exist_obj(char c)
+{
+	if ((c != 'N' || c != 'S' || c != 'E' || c != 'W' ) && c != '1' && c != '0')
+		return (-1);
+	return (1);
 }
