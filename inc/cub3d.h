@@ -28,16 +28,7 @@
 # define KEY_D 100
 # define KEY_S 115
 # define KEY_W 119
-/*
-typedef struct s_img_data
-{
-	void	*img_ptr;
-	char	*addr;
-	int		bpp;
-	int		size_l;
-	int		endian;
-}	t_img_data;
-*/
+
 typedef struct s_img_data
 {
     void	*img_ptr;      		
@@ -110,13 +101,13 @@ typedef struct s_map
 	int			map_started;
 	t_player	player;
 	t_img_data	*imgs;
+	unsigned int	map_width;
+    unsigned int	map_height;  
 }				t_map;
 
 //PROTOTIPO_FUNCIONES
 
 //main
-void	check_arg(int argc, char **argv);
-int		check_filename(char	*filename);
 void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
@@ -132,13 +123,13 @@ void	save_map_line(char *line, t_map *game);
 void	save_texture(char *line, t_map *game);
 void	save_color(char *line, t_map *game);
 void	save_texture(char *line, t_map *game);
-int		parse_rgb(char *str, t_map *game);
 
 //detector
 int		is_empty_line(char *line);
 int		is_map_line(char *line);
 int		is_color(char *line);
 int		is_texture(char *line);
+int		exist_obj(char c);
 
 //utils
 void	cub_free(char **str);
@@ -167,8 +158,15 @@ void	move_left(t_map *game);
 void	move_right(t_map *game);
 void	rotate_left(t_map *game);
 void	rotate_right(t_map *game);
+
 //init
 void	init_imgs(t_map *game);
-int		exist_obj(char c);
+
+//check
+int		check_map(t_map *game);
+int		parse_rgb(char *str, t_map *game);
+void	check_arg(int argc, char **argv);
+int		check_filename(char	*filename);
+
 
 #endif
