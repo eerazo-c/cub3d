@@ -24,8 +24,10 @@ void    init_raycast(t_map *game, t_raycast *ray, int x)
 {
 	ray->camera_x = 2 * x / (double)WIDTH - 1;
 
-	ray->ray_dir_x = game->player.dir_x + game->player.plane_x * ray->camera_x;
-	ray->ray_dir_y = game->player.dir_y + game->player.plane_y * ray->camera_x;
+	ray->ray_dir_x = game->player.dir_x + game->player.plane_x
+            * ray->camera_x;
+	ray->ray_dir_y = game->player.dir_y + game->player.plane_y
+            * ray->camera_x;
 
 	ray->map_x = (int)(game->player.pos_x);
 	ray->map_y = (int)(game->player.pos_y);

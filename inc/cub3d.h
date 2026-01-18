@@ -17,7 +17,7 @@
 # define ON_DESTROY 17
 
 # define WIDTH	1080
-# define HEIGHT	1000
+# define HEIGHT	1020
 
 # define ESC 65307
 
@@ -32,12 +32,12 @@
 typedef struct s_img_data
 {
     void	*img_ptr;      		
-    char	*addr;         		// Puntero al primer píxel (buffer de memoria)
-    int		bpp;	// Número de bits por píxel (BPP), usualmente 32
-    int		line_length;    		// Tamaño de una línea en bytes
-    int		endian;        			 // Orden de los bytes (little/big endian)
+    char	*addr;
+    int		bpp;
+    int		line_length;
+    int		endian;
     int		width;
-    int		height;            //por si falla el char addr.
+    int		height;
 	int		size_l;
 } t_img_data;
 
@@ -90,8 +90,8 @@ typedef struct s_raycast
 
 typedef struct s_map
 {
-	void		*mlx_ptr; //puntero para inciar minili
-	void		*win_ptr; //pntero para la ventana
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_cardinal	cardinal;
 	char		**map;
 	int			floor_color;

@@ -10,6 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
+
+// No hagas nada con esto  hay que hacer el refactor luego
+//	o si puedes hacerlo hazlo  es un bucle while i < 5   (son 5 texturas ya que el 0 es la ventana es el buffer de pantalla)
+//  cambiar los nombre de las imagenes por las variables de las texturas ya cargadas en el struct game cardinals   que ahi estan los nombres
 void	init_imgs(t_map *game)
 {
 	int	i;

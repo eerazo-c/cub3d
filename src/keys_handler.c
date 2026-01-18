@@ -16,9 +16,6 @@ int handle_keypress(int keycode, t_map *game)
         rotate_left(game);
     if (keycode == K_RIGHT)
         rotate_right(game);       
-    printf("Player Position: (x->%.2f, y->%.2f) Direction: (x->%.2f, y->%.2f)\n",
-           game->player.pos_x, game->player.pos_y,
-           game->player.dir_x, game->player.dir_y);
     raycasting(game);
     return (0);
 }
@@ -26,7 +23,7 @@ int handle_keypress(int keycode, t_map *game)
 int handle_close(t_map *game)
 {
     mlx_destroy_window(game->mlx_ptr, game->win_ptr);
-    exit(0);
+    exit(1);
     return (0);
 }
 

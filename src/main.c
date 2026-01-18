@@ -11,31 +11,36 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	check_player_dir(t_map *game, int x, int y, int dir)
+void	check_player_dir(t_map *game, int dir)
 {
 	if (dir == 'N')
 	{
 		game->player.dir_x = 0;
 		game->player.dir_y = -1;
+		game->player.plane_x = 0.60;
+		game->player.plane_y = 0;
 	}
 	else if (dir == 'S')
 	{
 		game->player.dir_x = 0;
 		game->player.dir_y = 1;
+		game->player.plane_x = -0.60;
+		game->player.plane_y = 0;	
 	}
 	else if (dir == 'E')
 	{
 		game->player.dir_x = 1;
 		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = 0.60;
 	}
 	else if (dir == 'W')
 	{
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.plane_y = -0.60;
 	}
-	game->player.pos_x = x + 0.5;
-	game->player.pos_y = y + 0.5;
-		
 }
 
 void	init_player(t_map *game)
@@ -52,9 +57,9 @@ void	init_player(t_map *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W' )
 			{
-				check_player_dir(game,i, j ,game->map[i][j]);
-				game->player.plane_x = 0.60;
-				game->player.plane_y = 0;
+				check_player_dir(game, game->map[i][j]);
+				game->player.pos_x = j + 0.5;
+				game->player.pos_y = i + 0.5;
 				game->player.speed = 0.50;
 				return ;
 			}
