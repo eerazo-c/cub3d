@@ -11,21 +11,73 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-// No hagas nada con esto  hay que hacer el refactor luego
-//	o si puedes hacerlo hazlo  es un bucle while i < 5   (son 5 texturas ya que el 0 es la ventana es el buffer de pantalla)
-//  cambiar los nombre de las imagenes por las variables de las texturas ya cargadas en el struct game cardinals   que ahi estan los nombres
+void	init_texture_no(t_map *game, unsigned int index)
+{
+	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->cardinals.no, &width, &height);
+	if (!game->imgs[index].img_ptr)
+		ft_error_fd("ERROR: texture greystone missing", 1);
+	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
+			&game->imgs[index].bpp, &game->imgs[index].size_l,
+			&game->imgs[index].endian);
+	game->imgs[index].line_length = game->imgs[index].size_l;
+	game->imgs[index].width = width;
+	game->imgs[index].height = height;
+}
+
+void	init_texture_so(t_map *game, unsigned int index)
+{
+	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->cardinals.so, &width, &height);
+	if (!game->imgs[index].img_ptr)
+		ft_error_fd("ERROR: texture greystone missing", 1);
+	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
+			&game->imgs[index].bpp, &game->imgs[index].size_l,
+			&game->imgs[index].endian);
+	game->imgs[index].line_length = game->imgs[index].size_l;
+	game->imgs[index].width = width;
+	game->imgs[index].height = height;
+}
+
+void	init_texture_we(t_map *game, unsigned int index)
+{
+	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->cardinals.we, &width, &height);
+	if (!game->imgs[index].img_ptr)
+		ft_error_fd("ERROR: texture greystone missing", 1);
+	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
+			&game->imgs[index].bpp, &game->imgs[index].size_l,
+			&game->imgs[index].endian);
+	game->imgs[index].line_length = game->imgs[index].size_l;
+	game->imgs[index].width = width;
+	game->imgs[index].height = height;
+}
+
+void	init_texture_ea(t_map *game, unsigned int index)
+{
+	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
+			game->cardinals.ea, &width, &height);
+	if (!game->imgs[index].img_ptr)
+		ft_error_fd("ERROR: texture greystone missing", 1);
+	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
+			&game->imgs[index].bpp, &game->imgs[index].size_l,
+			&game->imgs[index].endian);
+	game->imgs[index].line_length = game->imgs[index].size_l;
+	game->imgs[index].width = width;
+	game->imgs[index].height = height;
+}
+
 void	init_imgs(t_map *game)
 {
 	int	i;
 	int	width;
 	int	height;
+	int	num_img;
 
-	// Reservar espacio: img[0] será el buffer de pantalla, 1..4 las texturas
-	game->imgs = ft_calloc(5, sizeof(t_img_data));
+	i = 1;
+	game->imgs = ft_calloc(i, sizeof(t_img_data));
 	if (!game->imgs)
 		ft_error_fd("ERROR: images allocation failed", 1);
-
-	// 0: buffer de pantalla (nueva imagen en memoria para dibujar antes de mostrar)
 	game->imgs[0].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	if (!game->imgs[0].img_ptr)
 		ft_error_fd("ERROR: mlx_new_image failed", 1);
@@ -34,49 +86,8 @@ void	init_imgs(t_map *game)
 	game->imgs[0].line_length = game->imgs[0].size_l;
 	game->imgs[0].width = WIDTH;
 	game->imgs[0].height = HEIGHT;
-
-	// Texturas: 1=greystone, 2=wood, 3=purplestone, 4=redbrick
-	i = 1;
-	game->imgs[i].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"imgs/greystone.xpm", &width, &height);
-	if (!game->imgs[i].img_ptr)
-		ft_error_fd("ERROR: texture greystone missing", 1);
-	game->imgs[i].addr = mlx_get_data_addr(game->imgs[i].img_ptr,
-			&game->imgs[i].bpp, &game->imgs[i].size_l, &game->imgs[i].endian);
-	game->imgs[i].line_length = game->imgs[i].size_l;
-	game->imgs[i].width = width;
-	game->imgs[i].height = height;
-
-	i = 2;
-	game->imgs[i].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"imgs/wood.xpm", &width, &height);
-	if (!game->imgs[i].img_ptr)
-		ft_error_fd("ERROR: texture wood missing", 1);
-	game->imgs[i].addr = mlx_get_data_addr(game->imgs[i].img_ptr,
-			&game->imgs[i].bpp, &game->imgs[i].size_l, &game->imgs[i].endian);
-	game->imgs[i].line_length = game->imgs[i].size_l;
-	game->imgs[i].width = width;
-	game->imgs[i].height = height;
-
-	i = 3;
-	game->imgs[i].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"imgs/purplestone.xpm", &width, &height);
-	if (!game->imgs[i].img_ptr)
-		ft_error_fd("ERROR: texture purplestone missing", 1);
-	game->imgs[i].addr = mlx_get_data_addr(game->imgs[i].img_ptr,
-			&game->imgs[i].bpp, &game->imgs[i].size_l, &game->imgs[i].endian);
-	game->imgs[i].line_length = game->imgs[i].size_l;
-	game->imgs[i].width = width;
-	game->imgs[i].height = height;
-
-	i = 4;
-	game->imgs[i].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			"imgs/redbrick.xpm", &width, &height);
-	if (!game->imgs[i].img_ptr)
-		ft_error_fd("ERROR: texture redbrick missing", 1);
-	game->imgs[i].addr = mlx_get_data_addr(game->imgs[i].img_ptr,
-			&game->imgs[i].bpp, &game->imgs[i].size_l, &game->imgs[i].endian);
-	game->imgs[i].line_length = game->imgs[i].size_l;
-	game->imgs[i].width = width;
-	game->imgs[i].height = height;
+	init_textures_no(game, 1);
+	init_textures_so(game, 2);
+	init_textures_we(game, 3);
+	init_textures_ea(game, 4);
 }
