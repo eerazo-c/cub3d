@@ -49,6 +49,8 @@ void	parse_cub(char *file, t_map *game)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (game->map_started == 1)
+			exist_obj(line);
 		parse_line(line, game);
 		free(line);
 		line = get_next_line(fd);

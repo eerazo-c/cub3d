@@ -59,9 +59,17 @@ int	is_empty_line(char *line)
 	return (1);
 }
 
-int	exist_obj(char c)
+int	exist_obj(char *s)
 {
-	if ((c != 'N' || c != 'S' || c != 'E' || c != 'W' ) && c != '1' && c != '0')
-		return (-1);
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if ((s[i] != 'N' || s[i] != 'S' || s[i] != 'E' || s[i] != 'W' ) 
+				&& s[i] != '1' && s[i] != '0')
+			ft_error_fd("ERROR: mapa no exist obj", 1);
+		i++;
+	}
 	return (1);
 }

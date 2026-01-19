@@ -129,7 +129,7 @@ int		is_empty_line(char *line);
 int		is_map_line(char *line);
 int		is_color(char *line);
 int		is_texture(char *line);
-int		exist_obj(char c);
+int		exist_obj(char *s);
 
 //utils
 void	cub_free(char **str);

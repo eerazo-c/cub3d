@@ -17,7 +17,7 @@ int	check_map(t_map *game)
 
 	i = 0;
 	while (i < game->map_width)
-	{
+	{	
 		if (game->map[0][i] != '1' || game->map[game->map_height -1][i] != '1')
 			return (-1);
 		i++;
@@ -91,5 +91,3 @@ void	check_arg(int argc, char **argv)
 	else
 		ft_error_fd("ERROR: number of arguments invalid", 1);
 }
-
-
