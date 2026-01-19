@@ -15,7 +15,7 @@ int handle_keypress(int keycode, t_map *game)
     if (keycode == K_LEFT)
         rotate_left(game);
     if (keycode == K_RIGHT)
-        rotate_right(game);       
+        rotate_right(game);
     raycasting(game);
     return (0);
 }

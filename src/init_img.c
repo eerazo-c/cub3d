@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	init_texture_no(t_map *game, unsigned int index)
+void	init_texture_no(t_map *game,  int index, int width, int height)
 {
 	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->cardinals.no, &width, &height);
+			game->cardinal.no, &width, &height);
 	if (!game->imgs[index].img_ptr)
 		ft_error_fd("ERROR: texture greystone missing", 1);
 	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
@@ -25,10 +25,10 @@ void	init_texture_no(t_map *game, unsigned int index)
 	game->imgs[index].height = height;
 }
 
-void	init_texture_so(t_map *game, unsigned int index)
+void	init_texture_so(t_map *game, unsigned int index, int width, int height)
 {
 	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->cardinals.so, &width, &height);
+			game->cardinal.so, &width, &height);
 	if (!game->imgs[index].img_ptr)
 		ft_error_fd("ERROR: texture greystone missing", 1);
 	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
@@ -39,10 +39,10 @@ void	init_texture_so(t_map *game, unsigned int index)
 	game->imgs[index].height = height;
 }
 
-void	init_texture_we(t_map *game, unsigned int index)
+void	init_texture_we(t_map *game, unsigned int index, int width, int height)
 {
 	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->cardinals.we, &width, &height);
+			game->cardinal.we, &width, &height);
 	if (!game->imgs[index].img_ptr)
 		ft_error_fd("ERROR: texture greystone missing", 1);
 	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
@@ -53,10 +53,10 @@ void	init_texture_we(t_map *game, unsigned int index)
 	game->imgs[index].height = height;
 }
 
-void	init_texture_ea(t_map *game, unsigned int index)
+void	init_texture_ea(t_map *game, unsigned int index, int width, int height)
 {
 	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
-			game->cardinals.ea, &width, &height);
+			game->cardinal.ea, &width, &height);
 	if (!game->imgs[index].img_ptr)
 		ft_error_fd("ERROR: texture greystone missing", 1);
 	game->imgs[index].addr = mlx_get_data_addr(game->imgs[index].img_ptr,
@@ -69,13 +69,12 @@ void	init_texture_ea(t_map *game, unsigned int index)
 
 void	init_imgs(t_map *game)
 {
-	int	i;
 	int	width;
 	int	height;
-	int	num_img;
 
-	i = 1;
-	game->imgs = ft_calloc(i, sizeof(t_img_data));
+	width = 0;
+	height = 0; ///// ,mirar aqui si algo falla
+	game->imgs = ft_calloc(5, sizeof(t_img_data));
 	if (!game->imgs)
 		ft_error_fd("ERROR: images allocation failed", 1);
 	game->imgs[0].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
@@ -86,8 +85,8 @@ void	init_imgs(t_map *game)
 	game->imgs[0].line_length = game->imgs[0].size_l;
 	game->imgs[0].width = WIDTH;
 	game->imgs[0].height = HEIGHT;
-	init_textures_no(game, 1);
-	init_textures_so(game, 2);
-	init_textures_we(game, 3);
-	init_textures_ea(game, 4);
+	init_texture_no(game, 1, width, height);
+	init_texture_so(game, 2, width, height);
+	init_texture_we(game, 3, width, height);
+	init_texture_ea(game, 4, width, height);
 }

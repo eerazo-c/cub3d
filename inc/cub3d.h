@@ -161,6 +161,11 @@ void	rotate_right(t_map *game);
 
 //init
 void	init_imgs(t_map *game);
+void	init_texture_no(t_map *game,  int index, int width, int height);
+void	init_texture_so(t_map *game, unsigned int index, int width, int height);
+void	init_texture_we(t_map *game, unsigned int index, int width, int height);
+void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
+
 
 //check
 int		check_map(t_map *game);
