@@ -6,7 +6,7 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:52:08 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/16 17:54:33 by elerazo-         ###   ########.fr       */
+/*   Updated: 2026/01/19 21:17:45 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -66,10 +66,9 @@ int	exist_obj(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if ((s[i] == 'N' || s[i] == 'S' || s[i] == 'E' || s[i] == 'W' ) 
-				&& s[i] == '1' && s[i] == '0')
-			return (0);
-		ft_error_fd("ERROR: mapa no exist obj", 1);
+		if ((s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' ) 
+				&& s[i] != '1' && s[i] != '0' && s[i] != '\n')
+			ft_error_fd("ERROR: mapa no exist obj", 1);
 		i++;
 	}
 	return (1);

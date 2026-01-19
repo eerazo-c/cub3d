@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/06 20:36:37 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/19 21:13:24 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -49,8 +49,8 @@ void	parse_cub(char *file, t_map *game)
 	line = get_next_line(fd);
 	while (line)
 	{
-//		if (game->map_started == 1)
-//			exist_obj(line);
+		if (game->map_started == 1)
+			exist_obj(line);
 		parse_line(line, game);
 		free(line);
 		line = get_next_line(fd);
