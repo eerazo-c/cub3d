@@ -31,29 +31,43 @@ void	save_color(char *line, t_map *game)
 
 void	save_texture(char *line, t_map *game)
 {
+	char *path_start;
+
 	if (ft_strchr(line, 'N'))
 	{
 		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-		game->cardinal.no = ft_strdup(line + 3);
+		path_start = line + 3;
+		while (*path_start == ' ' || *path_start == '\t')
+			path_start++;
+		game->cardinal.no = ft_strdup(path_start);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
 		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		game->cardinal.so = ft_strdup(line + 3);
+		path_start = line + 3;
+		while (*path_start == ' ' || *path_start == '\t')
+			path_start++;
+		game->cardinal.so = ft_strdup(path_start);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
 		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		game->cardinal.we = ft_strdup(line + 3);
+		path_start = line + 3;
+		while (*path_start == ' ' || *path_start == '\t')
+			path_start++;
+		game->cardinal.we = ft_strdup(path_start);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
 		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		game->cardinal.ea = ft_strdup(line + 3);
+		path_start = line + 3;
+		while (*path_start == ' ' || *path_start == '\t')
+			path_start++;
+		game->cardinal.ea = ft_strdup(path_start);
 	}
 }
 
