@@ -62,3 +62,10 @@ void	move_right(t_map *game)
 	if (game->map[(int)new_y][(int)game->player.pos_x] != '1')
 		game->player.pos_y = new_y;
 }
+
+int	handle_close(t_map *game)
+{
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	exit(1);
+	return (0);
+}

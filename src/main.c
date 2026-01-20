@@ -35,7 +35,9 @@ int	main(int argc, char **argv)
 	init_player(&game);
 	raycasting(&game);
 	mlx_hook(game.win_ptr, ON_KEYPRESS, 1L << 0, handle_keypress, &game);
-	mlx_hook(game.win_ptr, ON_DESTROY, 1L << 0, handle_close, &game);
+	mlx_hook(game.win_ptr, ON_KEYRELEASE, 1L << 1, handle_release, &game);
+	mlx_hook(game.win_ptr, ON_DESTROY, 0, handle_close, &game);
+	mlx_loop_hook(game.mlx_ptr, update_game, &game);
 	mlx_loop(game.mlx_ptr);
 	return (0);
 }

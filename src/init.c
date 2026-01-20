@@ -28,7 +28,7 @@ void	init_player(t_map *game)
 				check_player_dir(game, game->map[i][j]);
 				game->player.pos_x = j + 0.5;
 				game->player.pos_y = i + 0.5;
-				game->player.speed = 0.50;
+				game->player.speed = 0.05;
 				return ;
 			}
 			j++;
@@ -42,6 +42,8 @@ void	init_all(t_map *game)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		ft_error_fd("ERROR: mlx initialization failed", 1);
+	check_player_exists(game);
+
 	init_window(game);
 }
 

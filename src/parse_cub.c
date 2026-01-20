@@ -57,6 +57,7 @@ void	parse_cub(char *file, t_map *game)
 		i++;
 	}
 	close(fd);
-	if (check_map(game))
+	set_map_dimensions(game); // nose no funciona bien
+	if (check_map(game) == -1)
 		ft_error_fd("ERROR: Unclosed map", 1);
 }

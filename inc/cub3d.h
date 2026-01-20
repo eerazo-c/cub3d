@@ -15,6 +15,7 @@
 
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
+# define ON_KEYRELEASE 3
 
 # define WIDTH	1080
 # define HEIGHT	1020
@@ -50,7 +51,6 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	int		look;		//direcion dende mira
 }					t_player;
 
 typedef struct s_cardinal
@@ -88,19 +88,30 @@ typedef struct s_raycast
     int		draw_end;       // Píxel donde termina de dibujar la pared
 }   			t_raycast;
 
+typedef struct s_keys
+{
+    int	w;
+    int	s;
+    int	a;
+    int	d;
+    int	rotateleft;
+    int	rotateright;
+}				t_keys;
+
 typedef struct s_map
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_cardinal	cardinal;
-	char		**map;
-	int			floor_color;
-	int			floor_exist;
-	int			ceiling_exist;
-	int			ceiling_color;
-	int			map_started;
-	t_player	player;
-	t_img_data	*imgs;
+	void		    *mlx_ptr;
+	void		    *win_ptr;
+	t_cardinal	    cardinal;
+	char		    **map;
+    t_keys          keys;
+	int			    floor_color;
+	int			    floor_exist;
+	int			    ceiling_exist;
+	int			    ceiling_color;
+	int			    map_started;
+	t_player	    player;
+	t_img_data	    *imgs;
 	unsigned int	map_width;
     unsigned int	map_height;  
 }				t_map;
@@ -109,6 +120,11 @@ typedef struct s_map
 
 //main
 void	check_arg(int argc, char **argv);
+
+//errors 
+void check_player_exists(t_map *game);
+
+void	set_map_dimensions(t_map *game); // no se no funciona bien
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
@@ -149,6 +165,9 @@ void	raycasting(t_map *game);
 
 //keyhooks
 int		handle_keypress(int keycode, t_map *game);
+int     handle_release(int keycode, t_map *game);
+int     update_game(t_map *game);
+
 int		handle_close(t_map *game);
 void	move_forward(t_map *game);
 void	move_backward(t_map *game);

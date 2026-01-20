@@ -29,3 +29,27 @@ void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue)
 	ft_putendl_fd(msg, fd);
 	exit(exitvalue);
 }
+
+void	check_player_exists(t_map *game)
+{
+	size_t	i;
+	size_t	j;
+	int		player_count;
+
+	i = 0;
+	player_count = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
+				game->map[i][j] == 'E' || game->map[i][j] == 'W' )
+				player_count++;
+			j++;
+		}
+		i++;
+	}
+	if (player_count != 1)
+		ft_error_fd("ERROR: multiple players in the map", 1);
+}
