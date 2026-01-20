@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:00:51 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/16 18:04:04 by elerazo-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:51:32 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -54,6 +54,8 @@ void	save_texture(char *line, t_map *game)
 		while (*path_start == ' ' || *path_start == '\t')
 			path_start++;
 		game->cardinal.so = ft_strdup_v2(path_start);
+
+void	check_arg(int argc, char **argv);
 	}
 	else if (ft_strchr(line, 'W'))
 	{

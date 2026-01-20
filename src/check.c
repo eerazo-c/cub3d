@@ -6,7 +6,7 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:11:33 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/16 18:16:06 by elerazo-         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:28:11 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -17,7 +17,7 @@ int	check_map(t_map *game)
 
 	i = 0;
 	while (i < game->map_width)
-	{	
+	{
 		if (game->map[0][i] != '1' || game->map[game->map_height -1][i] != '1')
 			return (-1);
 		i++;
@@ -79,15 +79,33 @@ int	check_filename(char	*filename)
 	return (0);
 }
 
-void	check_arg(int argc, char **argv)
+void	check_player_dir(t_map *game, int dir)
 {
-	if (argc == 1)
-		ft_error_fd("ERROR: no map loaded", 1);
-	else if (argc == 2)
+	if (dir == 'N' || dir == 'S')
 	{
-		if (check_filename(argv[1]) == -1)
-			ft_error_fd("ERROR: file must contain ext. '.cub' or exist", 1);
+		game->player.dir_x = 0;
+		game->player.plane_y = 0;
+		if (dir == 'S')
+		{
+			game->player.dir_y = 1;
+			game->player.plane_x = -0.60;
+		}
+		game->player.dir_y = -1;
+		game->player.plane_x = 0.60;
+
 	}
-	else
-		ft_error_fd("ERROR: number of arguments invalid", 1);
+	else if (dir == 'E' || dir == 'W')
+	{
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		if (dir == 'W')
+		{
+			game->player.dir_x = -1;
+			game->player.plane_y = -0.60;
+		}
+		game->player.dir_x = 1;
+		game->player.plane_y = 0.60;
+	}
 }
+
+

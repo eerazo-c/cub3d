@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_img.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: istorric <istorric@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 19:01:53 by istorric          #+#    #+#             */
-/*   Updated: 2024/02/13 19:01:56 by istorric         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:07:40 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -77,7 +77,6 @@ void	init_imgs(t_map *game)
 	game->imgs = ft_calloc(5, sizeof(t_img_data));
 	if (!game->imgs)
 		ft_error_fd("ERROR: images allocation failed", 1);
-
 	game->imgs[0].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	if (!game->imgs[0].img_ptr)
 		ft_error_fd("ERROR: mlx_new_image failed", 1);
@@ -86,10 +85,10 @@ void	init_imgs(t_map *game)
 	game->imgs[0].line_length = game->imgs[0].size_l;
 	game->imgs[0].width = WIDTH;
 	game->imgs[0].height = HEIGHT;
-	printf("Loading NO texture: {%s}\n", game->cardinal.no);  // Debug
-	printf("Loading SO texture: {%s}\n", game->cardinal.so);  // Debug
-	printf("Loading WE texture: {%s}\n", game->cardinal.we);  // Debug
-	printf("Loading EA texture: {%s}\n", game->cardinal.ea);  // Debug
+	printf("Loading NO texture: {%s}\n", game->cardinal.no);
+	printf("Loading SO texture: {%s}\n", game->cardinal.so);
+	printf("Loading WE texture: {%s}\n", game->cardinal.we);
+	printf("Loading EA texture: {%s}\n", game->cardinal.ea);
 	init_texture_no(game, 1, width, height);
 	init_texture_so(game, 2, width, height);
 	init_texture_we(game, 3, width, height);
