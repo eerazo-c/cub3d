@@ -35,45 +35,29 @@ void	save_color(char *line, t_map *game)
 // lo dejo los demas para que lo pruebes y tal por que con esas comprovaciones se hacen mas de 25 lineas
 void	save_texture(char *line, t_map *game)
 {
-	char	*path_start; // elimina esto tambien
-
 	if (ft_strchr(line, 'N'))
 	{
 		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-	//	path_start = line + 3;
-//		while (*path_start == ' ' || *path_start == '\t')
-//			path_start++;
 		game->cardinal.no = ft_strdup_v2(line + 3);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
 		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		path_start = line + 3;
-		while (*path_start == ' ' || *path_start == '\t')
-			path_start++;
-		game->cardinal.so = ft_strdup_v2(path_start);
-
-void	check_arg(int argc, char **argv);
+		game->cardinal.so = ft_strdup_v2(line + 3);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
 		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		path_start = line + 3;
-		while (*path_start == ' ' || *path_start == '\t')
-			path_start++;
-		game->cardinal.we = ft_strdup_v2(path_start);
+		game->cardinal.we = ft_strdup_v2(line + 3);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
 		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		path_start = line + 3;
-		while (*path_start == ' ' || *path_start == '\t')
-			path_start++;
-		game->cardinal.ea = ft_strdup_v2(path_start);
+		game->cardinal.ea = ft_strdup_v2(line + 3);
 	}
 }
 
