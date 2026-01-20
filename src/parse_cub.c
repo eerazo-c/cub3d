@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/19 21:13:24 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/20 16:39:25 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -57,4 +57,6 @@ void	parse_cub(char *file, t_map *game)
 		i++;
 	}
 	close(fd);
+	if (check_map(game))
+		ft_error_fd("ERROR: Unclosed map", 1);
 }

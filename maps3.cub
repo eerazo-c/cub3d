@@ -3,7 +3,7 @@ SO ./imgs/wood.xpm
 WE ./imgs/purplestone.xpm
 EA ./imgs/redbrick.xpm
 
-F 200,100,50
+F 121,121,121
 C 50,200,50
 
 1111111111111
