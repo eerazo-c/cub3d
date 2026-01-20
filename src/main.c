@@ -13,6 +13,37 @@
 
 void	check_player_dir(t_map *game, int dir)
 {
+	if (dir == 'N' || dir == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.plane_y = 0;
+		if (dir == 'S')
+		{
+			game->player.dir_y = 1;
+			game->player.plane_x = -0.60;
+		}
+		game->player.dir_y = -1;
+		game->player.plane_x = 0.60;
+
+	}
+	else if (dir == 'E' || dir == 'W')
+	{
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		if (dir == 'W')
+		{
+			game->player.dir_x = -1;
+			game->player.plane_y = -0.60;
+		}
+		game->player.dir_x = 1;
+		game->player.plane_y = 0.60;
+	}
+}
+
+/*
+
+void	check_player_dir(t_map *game, int dir)
+{
 	if (dir == 'N')
 	{
 		game->player.dir_x = 0;
@@ -41,7 +72,7 @@ void	check_player_dir(t_map *game, int dir)
 		game->player.plane_x = 0;
 		game->player.plane_y = -0.60;
 	}
-}
+}*/
 
 void	init_player(t_map *game)
 {

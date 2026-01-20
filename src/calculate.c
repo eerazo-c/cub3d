@@ -17,7 +17,7 @@ void    calculate_step_and_side_dist(t_map *game, t_raycast *ray)
     {
         ray->step_x = -1;
         ray->side_dist_x = (game->player.pos_x - ray->map_x)
-            * ray->delta_dist_x;
+                * ray->delta_dist_x;
     }
     else
     {
@@ -43,7 +43,7 @@ void	calculate_wall_distance(t_map *game, t_raycast *ray)
 {
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - game->player.pos_x
-            + (1 - ray->step_x) / 2.0) / ray->ray_dir_x;
+        + (1 - ray->step_x) / 2.0) / ray->ray_dir_x;
 	else
 		ray->perp_wall_dist = (ray->map_y - game->player.pos_y
             + (1 - ray->step_y) / 2.0) / ray->ray_dir_y;

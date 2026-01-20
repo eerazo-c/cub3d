@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-void	init_texture_no(t_map *game,  int index, int width, int height)
+void	init_texture_no(t_map *game, int index, int width, int height)
 {
 	game->imgs[index].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr,
 			game->cardinal.no, &width, &height);
@@ -86,7 +86,6 @@ void	init_imgs(t_map *game)
 	game->imgs[0].line_length = game->imgs[0].size_l;
 	game->imgs[0].width = WIDTH;
 	game->imgs[0].height = HEIGHT;
-
 	printf("Loading NO texture: {%s}\n", game->cardinal.no);  // Debug
 	printf("Loading SO texture: {%s}\n", game->cardinal.so);  // Debug
 	printf("Loading WE texture: {%s}\n", game->cardinal.we);  // Debug
