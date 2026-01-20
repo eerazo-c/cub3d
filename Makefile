@@ -6,7 +6,7 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2026/01/06 20:37:31 by elerazo          ###   ########.fr        #
+#    Updated: 2026/01/20 17:34:18 by elerazo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	cub3d
@@ -15,9 +15,9 @@ CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g -I inc/
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src
-SRCS		=	main.c utils.c parse_cub.c detector.c map.c keys.c \
+SRCS		=	main.c utils.c parse_cub.c detector.c save.c keys.c \
 				raycast.c keys_handler.c calculate.c error_handler.c \
-				init_img.c check.c
+				init_img.c check.c init.c 
 
 MLX_PATH	=	./libs/minilibx
 LIBFT_PATH	=	./libs/libft/

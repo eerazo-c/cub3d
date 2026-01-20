@@ -108,9 +108,7 @@ typedef struct s_map
 //PROTOTIPO_FUNCIONES
 
 //main
-void	init_all(t_map *game);
-void	init_window(t_map *game);
-void	init_parse(t_map *game, char *str);
+void	check_arg(int argc, char **argv);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
@@ -118,7 +116,7 @@ void	parse_header_or_map(char *line, t_map *game);
 char	*read_line(int fd);
 void	parse_line(char *line, t_map *game);
 
-//map
+//save
 void	save_map_line(char *line, t_map *game);
 void	save_texture(char *line, t_map *game);
 void	save_color(char *line, t_map *game);
@@ -148,7 +146,6 @@ void	perform_dda(t_map *game, t_raycast *ray);
 void	calculate_step_and_side_dist(t_map *game, t_raycast *ray);
 void	init_raycast(t_map *game, t_raycast *ray, int x);
 void	raycasting(t_map *game);
-void	init_player(t_map *game);
 
 //keyhooks
 int		handle_keypress(int keycode, t_map *game);
@@ -160,19 +157,22 @@ void	move_right(t_map *game);
 void	rotate_left(t_map *game);
 void	rotate_right(t_map *game);
 
-//init
+//init_img
 void	init_imgs(t_map *game);
 void	init_texture_no(t_map *game,  int index, int width, int height);
 void	init_texture_so(t_map *game, unsigned int index, int width, int height);
 void	init_texture_we(t_map *game, unsigned int index, int width, int height);
 void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
 
-
 //check
 int		check_map(t_map *game);
 int		parse_rgb(char *str, t_map *game);
-void	check_arg(int argc, char **argv);
 int		check_filename(char	*filename);
-
+void	check_player_dir(t_map *game, int dir);
+//init
+void	init_all(t_map *game);
+void	init_window(t_map *game);
+void	init_parse(t_map *game, char *str);
+void	init_player(t_map *game);
 
 #endif
