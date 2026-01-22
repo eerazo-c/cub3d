@@ -74,9 +74,9 @@ void	parse_cub(char *file, t_map *game)
 	line = read_line(fd);
 	while (line)
 	{
-		//if (game->map_started == 1) luego ver donde se mueve esto
-		//	exist_obj(line);
-		printf("LINEA LEIDA -> [%s]\n", line);
+		if (game->map_started == 1)
+			exist_obj(line);
+		//printf("LINEA LEIDA -> [%s]\n", line);
 		parse_line(line, game);
 		free(line);
 		line = read_line(fd);
@@ -84,6 +84,6 @@ void	parse_cub(char *file, t_map *game)
 	}
 	close(fd);
 	set_map_dimensions(game); // nose no funciona bien
-	/*if (check_map(game) == -1)
-		ft_error_fd("ERROR: Unclosed map", 1);luego ver donde moverla */
+	if (check_map(game) == -1)
+		ft_error_fd("ERROR: Unclosed map", 1);
 }

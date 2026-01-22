@@ -44,7 +44,7 @@ banner:
 	@echo "# ========================== #"
 	@printf "%b" "\n$(RESET)"
 
-$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c inc/cub3d.h | $(OBJDIR)
+$(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Makefile inc/cub3d.h | $(OBJDIR)
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
