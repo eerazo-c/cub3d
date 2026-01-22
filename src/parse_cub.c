@@ -37,7 +37,7 @@ void	parse_line(char *line, t_map *game)
 		save_map_line(line, game);
 }
 
-char *read_line(int fd)
+char	*read_line(int fd)
 {
 	char	*buffer;
 	char	xchar;
@@ -52,7 +52,8 @@ char *read_line(int fd)
 		if (xchar == '\n')
 			break ;
 		buffer[index++] = xchar;
-		buffer = ft_realloc(buffer, ft_strlen(buffer) + 1, ft_strlen(buffer) + 2);
+		buffer = ft_realloc(buffer, ft_strlen(buffer)
+				+ 1, ft_strlen(buffer) + 2);
 		byte = read(fd, &xchar, 1);
 	}
 	if ((byte <= 0) && (index == 0))
@@ -74,16 +75,11 @@ void	parse_cub(char *file, t_map *game)
 	line = read_line(fd);
 	while (line)
 	{
-		if (game->map_started == 1)
-			exist_obj(line);
-		//printf("LINEA LEIDA -> [%s]\n", line);
 		parse_line(line, game);
 		free(line);
 		line = read_line(fd);
 		i++;
 	}
 	close(fd);
-	set_map_dimensions(game); // nose no funciona bien
-	if (check_map(game) == -1)
-		ft_error_fd("ERROR: Unclosed map", 1);
+	check_map(game->map); ////////////////////////// MAPPPPPPP
 }

@@ -121,6 +121,7 @@ typedef struct s_map
 //main
 void	check_arg(int argc, char **argv);
 
+
 //errors 
 void check_player_exists(t_map *game);
 
@@ -185,7 +186,8 @@ void	init_texture_we(t_map *game, unsigned int index, int width, int height);
 void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
 
 //check
-int		check_map(t_map *game);
+//int		check_map(t_map *game);
+void	check_map(char **map);
 int		parse_rgb(char *str, t_map *game);
 int		check_filename(char	*filename);
 void	check_player_dir(t_map *game, int dir);

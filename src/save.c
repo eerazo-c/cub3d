@@ -28,11 +28,7 @@ void	save_color(char *line, t_map *game)
 		game->ceiling_exist = 1;
 	}
 }
-// path_start para saltar las lineas en blanco y el NO  
-// he cambiado el ft_strdup y he hecho otra nueva ft_strdup_v2 esta en utils y su explicacion
-// los demas comentarios son lineas que he estado probando funcionan bien sin estas pero no se si tenemos que comprobar 
-// que esten correctos los nombres  sin espacios , sin tabularores y tal 
-// lo dejo los demas para que lo pruebes y tal por que con esas comprovaciones se hacen mas de 25 lineas
+
 void	save_texture(char *line, t_map *game)
 {
 	if (ft_strchr(line, 'N'))

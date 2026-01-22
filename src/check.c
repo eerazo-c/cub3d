@@ -11,47 +11,60 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-/*
-// test  no tomar en cuenta
-int	check_map(t_map *game)
+
+
+static int	is_player(char p)
 {
-    unsigned long	i;
-    size_t			len;
-
-    if (!game || !game->map || game->map_width == 0 || game->map_height == 0)
-        return (-1);
-    i = 0;
-    while (i < game->map_width)
-    {
-        len = ft_strlen(game->map[0]);
-        if (len > 0 && game->map[0][len - 1] == '\n')
-            len--;
-        if (i >= len || game->map[0][i] != '1')
-            return (-1);
-        
-        len = ft_strlen(game->map[game->map_height - 1]);
-        if (len > 0 && game->map[game->map_height - 1][len - 1] == '\n')
-            len--;
-        if (i >= len || game->map[game->map_height - 1][i] != '1')
-            return (-1);
-        i++;
-    }
-    i = 0;
-    while (i < game->map_height)
-    {
-        len = ft_strlen(game->map[i]);
-        if (len > 0 && game->map[i][len - 1] == '\n')
-            len--;
-        if (game->map[i][0] != '1')
-            return (-1);
-        if (len == 0 || game->map[i][len - 1] != '1')
-            return (-1);
-        i++;
-    }
-    return (0);
+	if (p == 'N' || p == 'S' || p =='E' || p =='W' )
+		return (1);
+	else 
+		return (0);
 }
-*/
 
+static int check_map_spaces(int y , int x, char **map)
+{
+	if(map[y-1][x] == '0' || is_player(map[y-1][x]))
+		return (1);
+	if(map[y+1][x] == '0' || is_player(map[y+1][x]))
+		return (1);
+	if(map[y][x-1] == '0' || is_player(map[y][x-1]))
+		return (1);
+	if(map[y][x+1] == '0' || is_player(map[y][x+1]))
+		return (1);
+	return(0);
+
+}
+
+
+
+void	check_map(char **map)
+{
+	int	i;
+	int	j;
+	int	err;
+
+	i = 0;
+	err = 0;
+	while (map[i] && err == 0)
+	{
+		j = 0;
+	//	err = exist_obj(map[i]);
+		while (map[i][j] && err == 0)
+		{
+			if (map[i][j] == ' ')
+			{
+				err = check_map_spaces(i, j, map);
+			}
+			j++;
+		}
+		i++;
+	}
+	if (err)
+		ft_error_fd("Error: mapa error",1);
+	printf("todo bien :D\n");
+}
+
+/*
 int	check_map(t_map *game)
 {
 	unsigned long		i;
@@ -76,68 +89,7 @@ int	check_map(t_map *game)
 	}
 	return (0);
 }
-
-static void	pad_map_line(int row_index, int target_width, t_map *game)
-{
-	char	*new_line;
-	char	*old_line;
-	int		i;
-	int		len;
-
-	old_line = game->map[row_index];
-	len = ft_strlen(old_line);
-	if (len > 0 && old_line[len - 1] == '\n')
-		len--;
-	if (len >= target_width)
-		return ;
-	new_line = malloc(sizeof(char) * (target_width + 2));
-	if (!new_line)
-		ft_error("ERROR: malloc failed in pad_map_line", *game);
-	i = 0;
-	while (i < len)
-	{
-		new_line[i] = old_line[i];
-		i++;
-	}
-	while (i < target_width)
-	{
-		new_line[i] = ' ';
-		i++;
-	}
-	new_line[i] = '\n';
-	new_line[i + 1] = '\0';
-	free(old_line);
-	game->map[row_index] = new_line;
-}
-
-
-void	set_map_dimensions(t_map *game)
-{
-	unsigned int	i;
-	unsigned int	max_width;
-	int				len;
-
-	i = 0;
-	max_width = 0;
-	while (game->map[i])
-	{
-		len = ft_strlen(game->map[i]);
-		if (len > 0 && game->map[i][len - 1] == '\n')
-			len--;
-		if ((unsigned int)len > max_width)
-			max_width = (unsigned int)len;
-		i++;
-	}
-	game->map_width = max_width;
-	game->map_height = i;
-	// Rellenar filas cortas con espacios
-	i = 0;
-	while (i < game->map_height)
-	{
-		pad_map_line(i, max_width, game);
-		i++;
-	}
-}
+*/
 
 int	parse_rgb(char *str, t_map *game)
 {
@@ -195,7 +147,7 @@ void	check_player_dir(t_map *game, int dir)
 			game->player.dir_y = 1;
 			game->player.plane_x = -0.60;
 		}
-		else 
+		else
 		{
 			game->player.dir_y = -1;
 			game->player.plane_x = 0.60;
