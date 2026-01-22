@@ -84,26 +84,3 @@ int	get_texture_color(t_img_data *tex, int tx, int ty)
 	color = *(unsigned int *)ptr;
 	return ((int)color);
 }
-// un strdup que acaba cuando llegas al \n   ya que no reconoces las imagenes si tiene un \n al final   
-// si tienes otra manera de saltar el \n  en el save_texturas hazla porque asi se ve un poco feo jaja
-char	*ft_strdup_v2(char *src)
-{
-	int		i;
-	char	*new;
-	int		size;
-
-	size = 0;
-	while (src[size])
-		size++;
-	new = malloc(sizeof(char) * (size));
-	if (!(new))
-		return (NULL);
-	i = 0;
-	while (src[i] != '\n')
-	{
-		new[i] = src[i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
-}

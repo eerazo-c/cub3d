@@ -39,25 +39,25 @@ void	save_texture(char *line, t_map *game)
 	{
 		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-		game->cardinal.no = ft_strdup_v2(line + 3);
+		game->cardinal.no = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
 		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		game->cardinal.so = ft_strdup_v2(line + 3);
+		game->cardinal.so = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
 		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		game->cardinal.we = ft_strdup_v2(line + 3);
+		game->cardinal.we = ft_strdup(line + 3);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
 		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		game->cardinal.ea = ft_strdup_v2(line + 3);
+		game->cardinal.ea = ft_strdup(line + 3);
 	}
 }
 
