@@ -131,6 +131,7 @@ void	parse_cub(char *file, t_map *game);
 void	parse_header_or_map(char *line, t_map *game);
 char	*read_line(int fd);
 void	parse_line(char *line, t_map *game);
+char *read_line(int fd);
 
 //save
 void	save_map_line(char *line, t_map *game);
