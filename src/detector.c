@@ -66,8 +66,8 @@ int	exist_obj(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if ((s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' ) 
-				&& s[i] != '1' && s[i] != '0' && s[i] != '\n')
+		if ((s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' )
+			&& s[i] != '1' && s[i] != '0' && s[i] != '\n' && s[i] != ' ')
 			ft_error_fd("ERROR: mapa no exist obj", 1);
 		i++;
 	}
