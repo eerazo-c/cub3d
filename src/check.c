@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
+/*
 // test  no tomar en cuenta
 int	check_map(t_map *game)
 {
@@ -49,9 +50,9 @@ int	check_map(t_map *game)
     }
     return (0);
 }
+*/
 
-
-/*int	check_map(t_map *game)
+int	check_map(t_map *game)
 {
 	unsigned long		i;
 
@@ -74,7 +75,7 @@ int	check_map(t_map *game)
 		i++;
 	}
 	return (0);
-}*/
+}
 
 static void	pad_map_line(int row_index, int target_width, t_map *game)
 {
@@ -108,6 +109,7 @@ static void	pad_map_line(int row_index, int target_width, t_map *game)
 	free(old_line);
 	game->map[row_index] = new_line;
 }
+
 
 void	set_map_dimensions(t_map *game)
 {
@@ -215,5 +217,3 @@ void	check_player_dir(t_map *game, int dir)
 		}
 	}
 }
-
-
