@@ -90,12 +90,12 @@ typedef struct s_raycast
 
 typedef struct s_keys
 {
-    int	w;
-    int	s;
-    int	a;
-    int	d;
-    int	rotateleft;
-    int	rotateright;
+    int         w;
+    int         s;
+    int         a;
+    int         d;
+    int         rotateleft;
+    int         rotateright;
 }				t_keys;
 
 typedef struct s_map
