@@ -6,16 +6,17 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:11:33 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/20 17:28:11 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/23 17:58:47 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
 
-
-
 static int	is_player(char p)
 {
-	if (p == 'N' || p == 'S' || p =='E' || p =='W' )
+	/*if (p == 'N' || p == 'S' || p =='E' || p =='W' )
+		return (1);*/
+	if ((p == 'N' && p == 'S' && p == 'E' && p == 'W' ) \
+			&& p == '1' && p == '0' && p == '\n' && p == ' ')
 		return (1);
 	else 
 		return (0);
@@ -34,8 +35,6 @@ static int check_map_spaces(int y , int x, char **map)
 	return(0);
 
 }
-
-
 
 void	check_map(char **map)
 {
