@@ -6,7 +6,7 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 18:11:33 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/23 18:12:04 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/23 18:43:09 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -15,9 +15,6 @@ static int	is_player(char p)
 {
 	if (p == 'N' || p == 'S' || p =='E' || p =='W' )
 		return (1);
-	/*if ((p == 'N' && p == 'S' && p == 'E' && p == 'W' ) \
-			&& p == '1' && p == '0' && p == '\n' && p == ' ')
-		return (1);*/
 	else 
 		return (0);
 }
@@ -64,8 +61,8 @@ void	check_map(char **map)
 	err = 0;
 	while (map[i] && err == 0)
 	{
+		exist_obj(map[i]);
 		j = 0;
-	//	err = exist_obj(map[i]);
 		while (map[i][j] && err == 0)
 		{
 			if (map[i][j] == ' ' || map[i][j] == '\n' || map[i][j] == '\0')
