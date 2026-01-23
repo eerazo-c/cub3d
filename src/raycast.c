@@ -144,6 +144,8 @@ void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
     }
 }
 
+
+// no se llama nunca pero la dejo por si acaso
 void cleanup_raycast(t_map *game)
 {
     int total_bytes;
