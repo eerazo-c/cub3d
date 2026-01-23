@@ -6,7 +6,7 @@
 /*   By: elerazo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:15:41 by elerazo           #+#    #+#             */
-/*   Updated: 2026/01/20 17:21:37 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/23 18:37:38 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -116,7 +116,7 @@ void	rotate_left(t_map *game)
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = -0.06;
+	rot_speed = -0.01;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
@@ -135,7 +135,7 @@ void	rotate_right(t_map *game)
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = 0.06;
+	rot_speed = 0.01;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
