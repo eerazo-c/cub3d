@@ -116,7 +116,7 @@ void	rotate_left(t_map *game)
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = -0.01;
+	rot_speed = -0.02;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)
@@ -135,7 +135,7 @@ void	rotate_right(t_map *game)
 	double	old_plane_x;
 	double	rot_speed;
 
-	rot_speed = 0.01;
+	rot_speed = 0.02;
 	old_dir_x = game->player.dir_x;
 	old_plane_x = game->player.plane_x;
 	game->player.dir_x = game->player.dir_x * cos(rot_speed)

@@ -30,6 +30,18 @@ void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue)
 	exit(exitvalue);
 }
 
+void	check_player_pos(char **map, int y, int x)
+{
+	if (map[y - 1][x] == ' ')
+		ft_error_fd("ERROR: Player is not in a valid position", 1);
+	if (map[y + 1][x] == '\0' || map[y + 1][x] == '\n' || map[y + 1][x] == ' ')
+		ft_error_fd("ERROR: Player is not in a valid position", 1);
+	if ( map[y][x - 1] == ' ')
+		ft_error_fd("ERROR: Player is not in a valid position", 1);
+	if (map[y][x + 1] == '\0' || map[y][x + 1] == '\n' || map[y][x + 1] == ' ')
+		ft_error_fd("ERROR: Player is not in a valid position", 1);
+}
+
 void	check_player_exists(t_map *game)
 {
 	size_t	i;
@@ -45,11 +57,15 @@ void	check_player_exists(t_map *game)
 		{
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S' ||
 				game->map[i][j] == 'E' || game->map[i][j] == 'W' )
+			{
+				check_player_pos(game->map, i, j);
 				player_count++;
+			}
+
 			j++;
 		}
 		i++;
 	}
 	if (player_count != 1)
-		ft_error_fd("ERROR: multiple players in the map", 1);
+		ft_error_fd("ERROR: Missing Players or Multiple Players", 1);
 }

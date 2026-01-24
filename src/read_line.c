@@ -24,23 +24,3 @@ char *read_line(int fd)
 	return (buffer);
 }
 
-void	parse_cub(char *file, t_map game)
-{
-	(void)game;
-	int		fd;
-	char	*line;
-
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		ft_error_fd("ERROR: cannot open file", 1);
-
-	line = read_line(fd);
-	while (line)
-	{
-		printf("LINEA LEIDA -> [%s]\n", line);
-		//parse_line(line, game);
-		free(line);
-		line = read_line(fd);
-	}
-	close(fd);
-}

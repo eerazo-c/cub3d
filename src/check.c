@@ -19,26 +19,21 @@ static int	is_player(char p)
 		return (0);
 }
 
+static int	check_map_floor(int y , int x, char **map)
+{
+	if (map[y - 1][x] == ' ')
+		return (1);
+	if (map[y + 1][x] == '\0' || map[y + 1][x] == '\n' || map[y + 1][x] == ' ')
+		return (1);
+	if ( map[y][x - 1] == ' ')
+		return (1);
+	if (map[y][x + 1] == '\0' || map[y][x + 1] == '\n' || map[y][x + 1] == ' ')
+		return (1);
+	return (0);
+}
+
 static int check_map_spaces(int y , int x, char **map)
 {
-/*	if (map[y][x] == '\0')
-	{
-		if(map[y-1][x] == '0' || is_player(map[y-1][x]))
-			return (1);	
-		if(map[y][x-1] == '0' || is_player(map[y][x-1]))
-			return (1);
-	}
-	else if (map[y][x] == '\n')
-	{
-		if(map[y-1][x] == '0' || is_player(map[y-1][x]))
-			return (1);	
-		if(map[y+1][x] == '0' || is_player(map[y+1][x]))
-			return (1);	
-		if(map[y][x-1] == '0' || is_player(map[y][x-1]))
-			return (1);
-	}
-	else if (map[y][x] == ' ')
-	{*/
 		if(map[y-1][x] == '0' || is_player(map[y-1][x]))
 			return (1);
 		if(map[y+1][x] == '0' || is_player(map[y+1][x]))
@@ -47,7 +42,6 @@ static int check_map_spaces(int y , int x, char **map)
 			return (1);
 		if(map[y][x+1] == '0' || is_player(map[y][x+1]))
 			return (1);
-	//}
 	return(0);
 }
 
@@ -65,10 +59,10 @@ void	check_map(char **map)
 		j = 0;
 		while (map[i][j] && err == 0)
 		{
-			if (map[i][j] == ' ' || map[i][j] == '\n' || map[i][j] == '\0')
-			{
+			if (map[i][j] == '0')
+				err = check_map_floor(i, j, map);
+			if (map[i][j] == ' ')
 				err = check_map_spaces(i, j, map);
-			}
 			j++;
 		}
 		i++;
