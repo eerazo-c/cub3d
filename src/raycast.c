@@ -73,16 +73,16 @@ void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
     if (ray->side == 0)  // Pared vertical (impacto en X)
     {
         if (ray->ray_dir_x > 0)
-            texture = &game->imgs[2];  // Este
+            texture = &game->imgs[4];  // Este
         else
             texture = &game->imgs[3];  // Oeste
     }
     else  // Pared horizontal (impacto en Y)
     {
         if (ray->ray_dir_y > 0)
-            texture = &game->imgs[1];  // Sur
+            texture = &game->imgs[2];  // Sur
         else
-            texture = &game->imgs[4];  // Norte
+            texture = &game->imgs[1];  // Norte
     }
 
     // Calcular wall_x: punto exacto en la pared (0..1)

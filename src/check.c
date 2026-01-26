@@ -69,7 +69,7 @@ void	check_map(char **map)
 	}
 	if (err)
 		ft_error_fd("Error: mapa error",1);
-	printf("todo bien :D\n");
+//	printf("todo bien :D\n");
 }
 
 /*
