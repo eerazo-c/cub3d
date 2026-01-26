@@ -32,7 +32,7 @@ static int	check_map_floor(int y , int x, char **map)
 	return (0);
 }
 
-static int check_map_spaces(int y , int x, char **map)
+int check_map_spaces(int y , int x, char **map)
 {
 		if(map[y-1][x] == '0' || is_player(map[y-1][x]))
 			return (1);
@@ -61,8 +61,8 @@ void	check_map(char **map)
 		{
 			if (map[i][j] == '0')
 				err = check_map_floor(i, j, map);
-			if (map[i][j] == ' ')
-				err = check_map_spaces(i, j, map);
+			/*if (map[i][j] == ' ')
+				err = check_map_spaces(i, j, map);*/
 			j++;
 		}
 		i++;
