@@ -46,7 +46,7 @@ char	*read_line(int fd)
 
 	index = 0;
 	byte = read(fd, &xchar, 1);
-	buffer = malloc(sizeof(char) * 2);
+	buffer = malloc(sizeof(char) * 2); //revisar este malloc
 	while (byte > 0)
 	{
 		if (xchar == '\n')
