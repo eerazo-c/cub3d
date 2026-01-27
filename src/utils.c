@@ -6,7 +6,7 @@
 /*   By: elerazo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 23:18:23 by elerazo           #+#    #+#             */
-/*   Updated: 2026/01/06 19:43:17 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/27 13:48:58 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -35,18 +35,17 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 
 	if (new_size == 0)
 		return (free(ptr), NULL);
-	new = malloc(new_size + 1);
+	new = ft_calloc(new_size, 1);
 	if (!new)
 		return (NULL);
 	src = (char *)ptr;
 	dst = (char *)new;
 	i = 0;
-	while (i + 1 < old_size && i < new_size)
+	while (i < old_size && i < new_size)
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
 	free(ptr);
 	return (new);
 }

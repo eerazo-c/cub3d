@@ -4,7 +4,7 @@ WE ./imgs/purplestone.xpm
 EA ./imgs/redbrick.xpm
 
 F 121,121,121
-C 0,0,0
+C 0,0,120
 
 11111111111111111
 10000010000000001
