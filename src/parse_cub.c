@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/27 13:47:44 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/27 15:31:31 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -36,7 +36,7 @@ void	parse_line(char *line, t_map *game)
 	else
 		save_map_line(line, game);
 }
-
+/*
 char	*read_line(int fd)
 {
 	char	*buffer;
@@ -63,6 +63,7 @@ char	*read_line(int fd)
 	buffer[index] = '\0';
 	return (buffer);
 }
+*/
 
 void	parse_cub(char *file, t_map *game)
 {
@@ -74,12 +75,12 @@ void	parse_cub(char *file, t_map *game)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error_fd("ERROR: cannot open file", 1);
-	line = read_line(fd);
+	line = get_next_line(fd);
 	while (line)
 	{
 		parse_line(line, game);
 		free(line);
-		line = read_line(fd);
+		line = get_next_line(fd);
 		i++;
 	}
 	close(fd);
