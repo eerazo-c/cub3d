@@ -57,7 +57,7 @@ void	*ft_mem(size_t bytes)
 
 	temp = malloc(bytes);
 	if (temp == 0)
-		ft_error_fd("ERROR: Invalid memory ft_realloc", 1);
+		ft_error_fd("ERROR: Invalid memory ft_realloc (mem)", 1);
 	return (temp);
 }
 
