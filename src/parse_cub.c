@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/27 16:51:06 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/27 17:50:09 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -46,24 +46,23 @@ char	*read_line(int fd)
 
 	index = 0;
 	byte = read(fd, &xchar, 1);
-	buffer = malloc(sizeof(char) * 1); //revisar este malloc
-	if (!buffer)
-		return (NULL);
+	buffer = ft_mem(sizeof(char) * 2); //revisar este malloc
+	/*if (!buffer)
+		return (NULL);*/
 	while (byte > 0)
 	{
 		if (xchar == '\n')
 			break ;
-		buffer = ft_realloc(buffer, index + 1, index + 2);
 		buffer[index++] = xchar;
-		index++;
+		buffer = ft_realloc(buffer, ft_strlen(buffer) + 1, ft_strlen(buffer) + 2);
 		byte = read(fd, &xchar, 1);
+		//index++;
 	}
 	if ((byte <= 0) && (index == 0))
-		return (free(buffer), NULL);
+		return (free_realloc(buffer), NULL);
 	buffer[index] = '\0';
 	return (buffer);
 }
-
 
 void	parse_cub(char *file, t_map *game)
 {

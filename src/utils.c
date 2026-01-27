@@ -6,7 +6,7 @@
 /*   By: elerazo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 23:18:23 by elerazo           #+#    #+#             */
-/*   Updated: 2026/01/27 13:48:58 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/27 17:36:28 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -25,7 +25,7 @@ void	cub_free(char **str)
 	}
 	free(str);
 }
-
+/*
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*new;
@@ -48,6 +48,36 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	}
 	free(ptr);
 	return (new);
+}
+*/
+
+void	*ft_mem(size_t bytes)
+{
+	void	*temp;
+
+	temp = malloc(bytes);
+	if (temp == 0)
+		ft_error_fd("ERROR: Invalid memory ft_realloc", 1);
+	return (temp);
+}
+
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+{
+	void	*temp;
+
+	temp = ft_mem(new_size);
+	if (old_size)
+	{
+		ft_memcpy(temp, ptr, old_size);
+		free_realloc(ptr);
+	}
+	return (temp);
+}
+
+void	free_realloc(void *s)
+{
+	if (s)
+		free(s);
 }
 
 void	my_pixel_put(t_map *game, int x, int y, int color)
