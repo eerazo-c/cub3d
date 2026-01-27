@@ -31,29 +31,40 @@ void	save_color(char *line, t_map *game)
 
 void	save_texture(char *line, t_map *game)
 {
+	int i;
+
+	i = 0;
 	if (ft_strchr(line, 'N'))
 	{
 		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-		game->cardinal.no = ft_strdup(line + 3);
+		while (line[i++] && line[i] != ' ')
+			i++;
+		game->cardinal.no = ft_strdup(line +i);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
 		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		game->cardinal.so = ft_strdup(line + 3);
+		while (line[i++] && line[i] != ' ')
+			i++;
+		game->cardinal.so = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
 		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		game->cardinal.we = ft_strdup(line + 3);
+		while (line[i++] && line[i] != ' ')
+			i++;
+		game->cardinal.we = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
 		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		game->cardinal.ea = ft_strdup(line + 3);
+		while (line[i++] && line[i] != ' ')
+			i++;
+		game->cardinal.ea = ft_strdup(line + i);
 	}
 }
 
