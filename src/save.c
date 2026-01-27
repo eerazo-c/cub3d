@@ -13,18 +13,25 @@
 
 void	save_color(char *line, t_map *game)
 {
+	int i;
+
+	i = 0;
 	if (ft_strchr(line, 'F'))
 	{
 		if (game->floor_exist == 1)
 			ft_error("ERROR: floor color duplicated", *game);
-		game->floor_color = parse_rgb(line + 2, game);
+		while (line[i] && line[i] != ' ')
+			i++;
+		game->floor_color = parse_rgb(line + i, game);
 		game->floor_exist = 1;
 	}
 	else if (ft_strchr(line, 'C'))
 	{
 		if (game->ceiling_exist == 1)
 			ft_error("ERROR: ceiling color duplicated", *game);
-		game->ceiling_color = parse_rgb(line + 2, game);
+		while (line[i] && line[i] != ' ')
+			i++;
+		game->ceiling_color = parse_rgb(line + i, game);
 		game->ceiling_exist = 1;
 	}
 }
