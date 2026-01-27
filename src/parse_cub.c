@@ -42,25 +42,25 @@ char	*read_line(int fd)
 	char	*buffer;
 	char	xchar;
 	int		byte;
-	int		index;
+	int		size;
 
-	index = 0;
-	byte = read(fd, &xchar, 1);
-	buffer = ft_mem(sizeof(char) * 2); //revisar este malloc
-	/*if (!buffer)
-		return (NULL);*/
-	while (byte > 0)
+	size = 2;
+	byte = 0;
+	buffer = ft_mem(size);
+	while (read(fd, &xchar, 1) > 0)
 	{
 		if (xchar == '\n')
 			break ;
-		buffer[index++] = xchar;
-		buffer = ft_realloc(buffer, ft_strlen(buffer) + 1, ft_strlen(buffer) + 2);
-		byte = read(fd, &xchar, 1);
-		//index++;
+		if (byte + 1 >= size)
+		{
+			buffer = ft_realloc(buffer, size, size + 1);
+			size++;
+		}
+		buffer[byte++] = xchar;
 	}
-	if ((byte <= 0) && (index == 0))
+	if (byte == 0) 
 		return (free_realloc(buffer), NULL);
-	buffer[index] = '\0';
+	buffer[byte] = '\0';
 	return (buffer);
 }
 

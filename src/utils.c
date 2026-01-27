@@ -64,13 +64,22 @@ void	*ft_mem(size_t bytes)
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*temp;
+	size_t	copy_size;
 
-	temp = ft_mem(new_size);
-	if (old_size)
+	if (new_size == 0)
 	{
-		ft_memcpy(temp, ptr, old_size);
 		free_realloc(ptr);
+		return (NULL);
 	}
+	if (!ptr)
+		return (ft_mem(new_size));
+	temp = ft_mem(new_size);
+	copy_size = old_size;
+
+	if (new_size < old_size)
+		copy_size = new_size;
+	ft_memcpy(temp, ptr, copy_size);
+	free(ptr);
 	return (temp);
 }
 

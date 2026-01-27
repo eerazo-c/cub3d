@@ -9,7 +9,7 @@
 /*   Updated: 2026/01/27 17:27:37 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-char	*read_line(int fd)
+/*char	*read_line(int fd)
 {
 	char	*buffer;
 	char	character;
@@ -32,3 +32,4 @@ char	*read_line(int fd)
 	buffer[index] = '\0';
 	return (buffer);
 }
+*/
