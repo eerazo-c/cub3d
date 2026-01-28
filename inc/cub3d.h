@@ -133,7 +133,7 @@ void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 void check_player_exists(t_map *game);
 
 //raycast 
-void    set_texture_cardinal_pos(t_map *game, t_raycast *ray, t_img_data *text);
+t_img_data    *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 
 void	set_map_dimensions(t_map *game); // no se no funciona bien
 

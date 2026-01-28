@@ -37,10 +37,12 @@ void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int t
     double  tex_step;
     double  tex_pos;
     int     tex_y;
+    int     y;
 
     tex_step = (double)texture->height / (double)ray->line_height;
     tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex_step;
-    while (ray->draw_start < ray->draw_end)
+    y = ray->draw_start;
+    while (y < ray->draw_end)
     {
         tex_y = (int)tex_pos;
         if (tex_y < 0)
@@ -48,9 +50,9 @@ void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int t
         if (tex_y >= texture->height)
             tex_y = texture->height - 1;
         color = get_texture_color(texture, tex_x, tex_y);
-        my_pixel_put(game, x, ray->draw_start, color);
+        my_pixel_put(game, x, y, color);
         tex_pos += tex_step;
-        ray->draw_start++;
+        y++;
     }
 }
 
@@ -71,8 +73,7 @@ void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
     t_img_data	*texture;
     int			tex_x;
 
-    texture = 0;
-    set_texture_cardinal_pos(game, ray, texture);
+    texture = set_texture_cardinal_pos(game, ray);
     tex_x = get_texture_wall(game, ray, texture);
     // Dibujar techo
     draw_ceiling(game, x, ray->draw_start);

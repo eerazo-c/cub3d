@@ -58,22 +58,25 @@ void    perform_dda(t_map *game, t_raycast *ray)
     }
 }
 
-void    set_texture_cardinal_pos(t_map *game, t_raycast *ray, t_img_data *text)
+t_img_data    *set_texture_cardinal_pos(t_map *game, t_raycast *ray)
 {
+    t_img_data  *texture;
+
     if (ray->side == 0)
     {
         if (ray->ray_dir_x > 0)
-            text = &game->imgs[4];
+            texture = &game->imgs[4];
         else
-            text = &game->imgs[3];
+            texture = &game->imgs[3];
     }
     else
     {
         if (ray->ray_dir_y > 0)
-            text = &game->imgs[2];
+            texture = &game->imgs[2];
         else
-            text = &game->imgs[1];
+            texture = &game->imgs[1];
     }
-    if (text == NULL)
+    if (texture == NULL)
         ft_error_fd("Error: textura no cargada(raycast)", 1);
+    return (texture);
 }
