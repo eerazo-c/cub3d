@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
-#include <stdio.h>
 
 void	parse_header_or_map(char *line, t_map *game)
 {
@@ -58,9 +57,9 @@ char	*read_line(int fd)
 		}
 		buffer[byte++] = xchar;
 	}
-	if (byte == 0) 
-		return (free_realloc(buffer), NULL);
 	buffer[byte] = '\0';
+	if (byte == 0)
+		return (free_realloc(buffer), NULL);
 	return (buffer);
 }
 

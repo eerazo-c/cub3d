@@ -18,7 +18,7 @@ OBJDIR		=	build
 SRCSDIR		=	src
 SRCS		=	main.c utils.c parse_cub.c detector.c save.c keys.c \
 				raycast.c keys_handler.c calculate.c error_handler.c \
-				init_img.c check.c init.c 
+				init_img.c check.c init.c draw_map.c
 
 MLX_PATH	=	./libs/minilibx
 LIBFT_PATH	=	./libs/libft/

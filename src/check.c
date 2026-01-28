@@ -53,6 +53,8 @@ void	check_map(char **map)
 
 	i = 0;
 	err = 0;
+	if (!map)
+		ft_error_fd("Error: mapa error (checkmap)",1);
 	while (map[i] && err == 0)
 	{
 		exist_obj(map[i]);
@@ -69,7 +71,7 @@ void	check_map(char **map)
 	}
 	if (err)
 		ft_error_fd("Error: mapa error",1);
-//	printf("todo bien :D\n");
+
 }
 
 /*
@@ -144,36 +146,48 @@ int	check_filename(char	*filename)
 	return (0);
 }
 
-void	check_player_dir(t_map *game, int dir)
+static void check_player_nord_south(t_map *game, int dir)
 {
-	if (dir == 'N' || dir == 'S')
+	if (dir == 'N')
 	{
 		game->player.dir_x = 0;
 		game->player.plane_y = 0;
-		if (dir == 'S')
-		{
-			game->player.dir_y = 1;
-			game->player.plane_x = -0.60;
-		}
-		else
-		{
-			game->player.dir_y = -1;
-			game->player.plane_x = 0.60;
-		}
+		game->player.dir_y = -1;
+		game->player.plane_x = 0.60;
 	}
-	else if (dir == 'E' || dir == 'W')
+	else if (dir == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.plane_y = 0;
+		game->player.dir_y = 1;
+		game->player.plane_x = -0.60;
+	}
+}
+
+static void check_player_east_west(t_map *game, int dir)
+{
+	if (dir == 'W')
 	{
 		game->player.dir_y = 0;
 		game->player.plane_x = 0;
-		if (dir == 'W')
-		{
-			game->player.dir_x = -1;
-			game->player.plane_y = -0.60;
-		}
-		else
-		{
-			game->player.dir_x = 1;
-			game->player.plane_y = 0.60;
-		}
+		game->player.dir_x = -1;
+		game->player.plane_y = -0.60;
+	}
+	else if (dir == 'E')
+	{
+		game->player.dir_y = 0;
+		game->player.plane_x = 0;
+		game->player.dir_x = 1;
+		game->player.plane_y = 0.60;
+	}
+}
+
+void check_player_dir(t_map *game, int dir)
+{
+	if (dir == 'N' || dir == 'S')
+		check_player_nord_south(game, dir);
+	else if (dir == 'E' || dir == 'W')
+	{
+		check_player_east_west(game, dir);
 	}
 }

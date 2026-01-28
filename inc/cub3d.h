@@ -122,8 +122,18 @@ typedef struct s_map
 void	check_arg(int argc, char **argv);
 
 
+//draw
+int    get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text);
+void    draw_ceiling(t_map *game, int x, int draw_start);
+void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x);
+void    draw_floor(t_map *game, int x, int draw_end);
+void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
+
 //errors 
 void check_player_exists(t_map *game);
+
+//raycast 
+void    set_texture_cardinal_pos(t_map *game, t_raycast *ray, t_img_data *text);
 
 void	set_map_dimensions(t_map *game); // no se no funciona bien
 
@@ -197,5 +207,6 @@ void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
 void	init_player(t_map *game);
+
 
 #endif

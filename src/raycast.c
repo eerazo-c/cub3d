@@ -58,98 +58,22 @@ void    perform_dda(t_map *game, t_raycast *ray)
     }
 }
 
-void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
+void    set_texture_cardinal_pos(t_map *game, t_raycast *ray, t_img_data *text)
 {
-    int			y;
-    int			color;
-    t_img_data	*texture;
-    int			tex_x;
-    double		wall_x;
-    double		tex_step;
-    double		tex_pos;
-    int			tex_y;
-
-    // Elegir textura según lado y dirección del rayo
-    if (ray->side == 0)  // Pared vertical (impacto en X)
+    if (ray->side == 0)
     {
         if (ray->ray_dir_x > 0)
-            texture = &game->imgs[4];  // Este
+            text = &game->imgs[4];
         else
-            texture = &game->imgs[3];  // Oeste
+            text = &game->imgs[3];
     }
-    else  // Pared horizontal (impacto en Y)
+    else
     {
         if (ray->ray_dir_y > 0)
-            texture = &game->imgs[2];  // Sur
+            text = &game->imgs[2];
         else
-            texture = &game->imgs[1];  // Norte
+            text = &game->imgs[1];
     }
-
-    // Calcular wall_x: punto exacto en la pared (0..1)
-    // Esta es la parte crítica
-    if (ray->side == 0)  // Pared vertical
-    {
-        // La coordenada Y donde el rayo intersecta la pared vertical
-        wall_x = game->player.pos_y + ray->perp_wall_dist * ray->ray_dir_y;
-    }
-    else  // Pared horizontal
-    {
-        // La coordenada X donde el rayo intersecta la pared horizontal
-        wall_x = game->player.pos_x + ray->perp_wall_dist * ray->ray_dir_x;
-    }
-    
-    // Normalizar wall_x a rango [0, 1]
-    wall_x -= floor(wall_x);
-    
-    // tex_x: columna de la textura
-    tex_x = (int)(wall_x * (double)texture->width);
-    if (tex_x >= texture->width)
-        tex_x = texture->width - 1;
-    if (tex_x < 0)
-        tex_x = 0;
-    
-    // Calcular paso vertical y posición inicial en la textura
-    tex_step = (double)texture->height / (double)ray->line_height;
-    tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex_step;
-    
-    // Dibujar techo
-    y = 0;
-    while (y < ray->draw_start)
-    {
-        my_pixel_put(game, x, y, game->ceiling_color);
-        y++;
-    }
-    
-    // Dibujar la pared con textura
-    y = ray->draw_start;
-    while (y < ray->draw_end)
-    {
-        tex_y = (int)tex_pos;
-        if (tex_y < 0)
-            tex_y = 0;
-        if (tex_y >= texture->height)
-            tex_y = texture->height - 1;
-        color = get_texture_color(texture, tex_x, tex_y);
-        my_pixel_put(game, x, y, color);
-        tex_pos += tex_step;
-        y++;
-    }
-    
-    // Dibujar suelo
-    y = ray->draw_end;
-    while (y < HEIGHT)
-    {
-        my_pixel_put(game, x, y, game->floor_color);
-        y++;
-    }
-}
-
-
-// no se llama nunca pero la dejo por si acaso
-void cleanup_raycast(t_map *game)
-{
-    int total_bytes;
-    
-    total_bytes = game->imgs->line_length * game->imgs->height;
-    ft_memset(game->imgs->addr, 0, total_bytes);  
+    if (text == NULL)
+        ft_error_fd("Error: textura no cargada(raycast)", 1);
 }
