@@ -71,7 +71,7 @@ void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
     t_img_data	*texture;
     int			tex_x;
 
-    texture = NULL;
+    texture = 0;
     set_texture_cardinal_pos(game, ray, texture);
     tex_x = get_texture_wall(game, ray, texture);
     // Dibujar techo
