@@ -30,7 +30,7 @@ void	parse_header_or_map(char *line, t_map *game)
 
 void	parse_line(char *line, t_map *game)
 {
-	if (!game->map_started)
+	if (game->map_started == 0)
 		parse_header_or_map(line, game);
 	else
 		save_map_line(line, game);
@@ -85,5 +85,5 @@ void	parse_cub(char *file, t_map *game)
 		i++;
 	}
 	close(fd);
-	check_map(game->map); ////////////////////////// MAPPPPPPP
+	check_map(game->map);
 }

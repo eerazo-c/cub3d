@@ -40,12 +40,12 @@ void	save_texture(char *line, t_map *game)
 {
 	int i;
 
-	i = 0;
+	i = 2;
 	if (ft_strchr(line, 'N'))
 	{
 		if (game->cardinal.no)
 			ft_error("ERROR: NO duplicated", *game);
-		while (line[i++] && line[i] != ' ')
+		while (line[i] && line[i] == ' ')
 			i++;
 		game->cardinal.no = ft_strdup(line +i);
 	}
@@ -53,7 +53,7 @@ void	save_texture(char *line, t_map *game)
 	{
 		if (game->cardinal.so)
 			ft_error("ERROR: SO duplicated", *game);
-		while (line[i++] && line[i] != ' ')
+		while (line[i] && line[i] == ' ')
 			i++;
 		game->cardinal.so = ft_strdup(line + i);
 	}
@@ -61,7 +61,7 @@ void	save_texture(char *line, t_map *game)
 	{
 		if (game->cardinal.we)
 			ft_error("ERROR: WE duplicated", *game);
-		while (line[i++] && line[i] != ' ')
+		while (line[i] && line[i] == ' ')
 			i++;
 		game->cardinal.we = ft_strdup(line + i);
 	}
@@ -69,7 +69,7 @@ void	save_texture(char *line, t_map *game)
 	{
 		if (game->cardinal.ea)
 			ft_error("ERROR: EA duplicated", *game);
-		while (line[i++] && line[i] != ' ')
+		while (line[i] && line[i] == ' ')
 			i++;
 		game->cardinal.ea = ft_strdup(line + i);
 	}
@@ -77,10 +77,15 @@ void	save_texture(char *line, t_map *game)
 
 static void	init_map(char *line, t_map *game)
 {
-	game->map = malloc(ft_strlen(line) + 1);
+	game->map = malloc(sizeof(char *) * 2);
 	if (!game->map)
-		ft_error("ERROR: malloc failed", *game);
+		ft_error_fd("ERROR: malloc failed(init_map)", 1);
 	game->map[0] = ft_strdup(line);
+	if (!game->map[0])
+	{
+		free(game->map);
+		ft_error_fd("ERROR: malloc failed(init_map)v2", 1);
+	}
 	game->map[1] = NULL;
 }
 
@@ -88,20 +93,29 @@ static void	add_map_line(char *line, t_map *game)
 {
 	char	**new_map;
 	int		i;
+	int		j;
 
 	i = 0;
-	if (*line == '\0')
-		ft_error_fd("ERROR: invalid map position", 1);
-	new_map = malloc(ft_strlen(line) + 1);
-	if (!new_map)
-		ft_error("ERROR: malloc failed, en add map line", *game);
+	j = 0;
+	if (!line || *line == '\0')
+		ft_error_fd("ERROR: invalid map empty", 1);
 	while (game->map[i])
-	{
-		new_map[i] = game->map[i];
 		i++;
+	new_map = malloc(sizeof(char *) * (i + 2));
+	if (!new_map)
+		ft_error_fd("ERROR: malloc failed, en add map line", 1);
+	while (j < i)
+	{
+		new_map[j] = game->map[j];
+		j++;
 	}
-	new_map[i] = NULL;
 	new_map[i] = ft_strdup(line);
+	if (!new_map[i])
+	{
+		free(new_map);
+		ft_error_fd("ERROR: ft_strdup failed in add_map_line", 1);
+	}
+	new_map[i + 1] = NULL;
 	free(game->map);
 	game->map = new_map;
 }
