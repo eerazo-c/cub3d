@@ -42,23 +42,26 @@ char	*read_line(int fd)
 	char	xchar;
 	int		byte;
 	int		size;
+	int		hascontent;
 
-	size = 2;
+	size = 256;
 	byte = 0;
 	buffer = ft_mem(size);
+	hascontent = 0;
 	while (read(fd, &xchar, 1) > 0)
 	{
+		hascontent = 1;
 		if (xchar == '\n')
 			break ;
 		if (byte + 1 >= size)
 		{
-			buffer = ft_realloc(buffer, size, size + 1);
-			size++;
+			buffer = ft_realloc(buffer, size, size * 2);
+			size *= 2;
 		}
 		buffer[byte++] = xchar;
 	}
 	buffer[byte] = '\0';
-	if (byte == 0)
+	if (!hascontent)
 		return (free_realloc(buffer), NULL);
 	return (buffer);
 }
