@@ -115,7 +115,7 @@ typedef struct s_map
 	int				ceiling_color;
 	int				map_started;
 	t_player		player;
-	t_img_d		*imgs;
+	t_img_d			*imgs;
 	t_cardinal		cardinal;
 	unsigned int	map_width;
 	unsigned int	map_height;
@@ -139,9 +139,10 @@ void	ft_error(char *msg, t_map game);
 void	ft_error_fd(char *msg, int fd);
 void	check_player_pos(char **map, int y, int x);
 
-//raycast 
+//raycast
+void	raycasting(t_map *game);
+t_img_d	*set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 void	set_map_dimensions(t_map *game);
-t_img_d  *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
