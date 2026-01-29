@@ -43,7 +43,6 @@ void	init_all(t_map *game)
 	if (!game->mlx_ptr)
 		ft_error_fd("ERROR: mlx initialization failed", 1);
 	check_player_exists(game);
-
 	init_window(game);
 }
 

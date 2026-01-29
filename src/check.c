@@ -13,13 +13,13 @@
 
 static int	is_player(char p)
 {
-	if (p == 'N' || p == 'S' || p =='E' || p =='W' )
+	if (p == 'N' || p == 'S' || p == 'E' || p == 'W' )
 		return (1);
-	else 
+	else
 		return (0);
 }
 
-static int	check_map_floor(int y , int x, char **map)
+static int	check_map_floor(int y, int x, char **map)
 {
 	if (map[y - 1][x] == ' ' || map[y - 1][x] == '\0' || map[y + 1][x] == '\n')
 		return (1);
@@ -32,17 +32,17 @@ static int	check_map_floor(int y , int x, char **map)
 	return (0);
 }
 
-int check_map_spaces(int y , int x, char **map)
+int	check_map_spaces(int y, int x, char **map)
 {
-		if(map[y-1][x] == '0' || is_player(map[y-1][x]))
-			return (1);
-		if(map[y+1][x] == '0' || is_player(map[y+1][x]))
-			return (1);
-		if(map[y][x-1] == '0' || is_player(map[y][x-1]))
-			return (1);
-		if(map[y][x+1] == '0' || is_player(map[y][x+1]))
-			return (1);
-	return(0);
+	if (map[y - 1][x] == '0' || is_player(map[y - 1][x]))
+		return (1);
+	if (map[y + 1][x] == '0' || is_player(map[y + 1][x]))
+		return (1);
+	if (map[y][x - 1] == '0' || is_player(map[y][x - 1]))
+		return (1);
+	if (map[y][x + 1] == '0' || is_player(map[y][x + 1]))
+		return (1);
+	return (0);
 }
 
 void	check_map(char **map)
@@ -63,43 +63,13 @@ void	check_map(char **map)
 		{
 			if (map[i][j] == '0')
 				err = check_map_floor(i, j, map);
-			/*if (map[i][j] == ' ')
-				err = check_map_spaces(i, j, map);*/
 			j++;
 		}
 		i++;
 	}
 	if (err)
-		ft_error_fd("Error: mapa error",1);
-
+		ft_error_fd("Error: mapa error", 1);
 }
-
-/*
-int	check_map(t_map *game)
-{
-	unsigned long		i;
-
-	i = 0;
-	if (game->map == NULL)
-		return (-1);
-	while (i < game->map_width)
-	{
-		if (game->map[0][i] != '1' || game->map[game->map_height -1][i] != '1')
-			return (-1);
-		i++;
-	}
-	i = 0;
-	while (i < game->map_height)
-	{
-		if (game->map[i][0] != '1')
-			return (-1);
-		if (game->map[i][game->map_width - 1] != '1')
-			return (-1);
-		i++;
-	}
-	return (0);
-}
-*/
 
 int	parse_rgb(char *str, t_map *game)
 {
@@ -120,74 +90,4 @@ int	parse_rgb(char *str, t_map *game)
 	cub_free(rgb);
 	color_hex = (((unsigned int)r << 16) | ((unsigned int)g << 8) | b);
 	return (color_hex);
-}
-
-int	check_filename(char	*filename)
-{
-	char	*ext;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	ext = ".cub";
-	if (ft_strlen(filename) <= 4)
-		return (-1);
-	while (filename[i])
-		i++;
-	i = i - 4;
-	while (filename[i])
-	{
-		if (filename[i++] == ext[j++])
-			continue ;
-		else
-			return (-1);
-	}
-	return (0);
-}
-
-static void check_player_nord_south(t_map *game, int dir)
-{
-	if (dir == 'N')
-	{
-		game->player.dir_x = 0;
-		game->player.plane_y = 0;
-		game->player.dir_y = -1;
-		game->player.plane_x = 0.60;
-	}
-	else if (dir == 'S')
-	{
-		game->player.dir_x = 0;
-		game->player.plane_y = 0;
-		game->player.dir_y = 1;
-		game->player.plane_x = -0.60;
-	}
-}
-
-static void check_player_east_west(t_map *game, int dir)
-{
-	if (dir == 'W')
-	{
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.dir_x = -1;
-		game->player.plane_y = -0.60;
-	}
-	else if (dir == 'E')
-	{
-		game->player.dir_y = 0;
-		game->player.plane_x = 0;
-		game->player.dir_x = 1;
-		game->player.plane_y = 0.60;
-	}
-}
-
-void check_player_dir(t_map *game, int dir)
-{
-	if (dir == 'N' || dir == 'S')
-		check_player_nord_south(game, dir);
-	else if (dir == 'E' || dir == 'W')
-	{
-		check_player_east_west(game, dir);
-	}
 }

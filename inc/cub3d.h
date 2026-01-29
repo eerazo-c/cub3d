@@ -124,6 +124,7 @@ typedef struct s_map
 //PROTOTIPO_FUNCIONES
 
 //main
+int		check_filename(char	*filename);
 void	check_arg(int argc, char **argv);
 
 //draw_map
@@ -203,13 +204,14 @@ void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
 //check
 void	check_map(char **map);
 int		parse_rgb(char *str, t_map *game);
-int		check_filename(char	*filename);
-void	check_player_dir(t_map *game, int dir);
 
 //init
 void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
 void	init_player(t_map *game);
+
+//check_player
+void	check_player_dir(t_map *game, int dir);
 
 #endif

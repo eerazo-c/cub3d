@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
-int handle_keypress(int keycode, t_map *game)
+int	handle_keypress(int keycode, t_map *game)
 {
 	if (keycode == ESC)
 		handle_close(game);
@@ -30,7 +30,7 @@ int handle_keypress(int keycode, t_map *game)
 	return (0);
 }
 
-int handle_release(int keycode, t_map *game)
+int	handle_release(int keycode, t_map *game)
 {
 	if (keycode == KEY_W)
 		game->keys.w = 0;
@@ -47,26 +47,26 @@ int handle_release(int keycode, t_map *game)
 	return (0);
 }
 
-int update_game(t_map *game)
+int	update_game(t_map *game)
 {
-    int moved;
-    
-    moved = 0;
-    if (game->keys.w && ++moved)
-    move_forward(game);
-    if (game->keys.s && ++moved)
-    move_backward(game);
-    if (game->keys.a && ++moved)
-    move_left(game);
-    if (game->keys.d && ++moved)
-    move_right(game);
-    if (game->keys.rotateleft && ++moved)
-    rotate_left(game);
-    if (game->keys.rotateright && ++moved)
-    rotate_right(game);
-    if (moved)
-    raycasting(game);
-    return (0);
+	int	moved;
+
+	moved = 0;
+	if (game->keys.w && ++moved)
+		move_forward(game);
+	if (game->keys.s && ++moved)
+		move_backward(game);
+	if (game->keys.a && ++moved)
+		move_left(game);
+	if (game->keys.d && ++moved)
+		move_right(game);
+	if (game->keys.rotateleft && ++moved)
+		rotate_left(game);
+	if (game->keys.rotateright && ++moved)
+		rotate_right(game);
+	if (moved)
+		raycasting(game);
+	return (0);
 }
 
 void	rotate_left(t_map *game)
