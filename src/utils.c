@@ -25,31 +25,6 @@ void	cub_free(char **str)
 	}
 	free(str);
 }
-/*
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
-{
-	void	*new;
-	size_t	i;
-	char	*src;
-	char	*dst;
-
-	if (new_size == 0)
-		return (free(ptr), NULL);
-	new = ft_calloc(new_size, 1);
-	if (!new)
-		return (NULL);
-	src = (char *)ptr;
-	dst = (char *)new;
-	i = 0;
-	while (i < old_size && i < new_size)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	free(ptr);
-	return (new);
-}
-*/
 
 void	*ft_mem(size_t bytes)
 {
@@ -99,28 +74,4 @@ void	my_pixel_put(t_map *game, int x, int y, int color)
 	dst = game->imgs[0].addr + (y * game->imgs[0].line_length
 			+ x * (game->imgs[0].bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-int	get_texture_color(t_img_d *tex, int tx, int ty)
-{
-	unsigned char	*ptr;
-	int				bpp;
-	int				offset;
-	unsigned int	color;
-
-	if (!tex || !tex->addr)
-		return (0);
-	if (tx < 0)
-		tx = 0;
-	if (ty < 0)
-		ty = 0;
-	if (tx >= tex->width)
-		tx = tex->width - 1;
-	if (ty >= tex->height)
-		ty = tex->height - 1;
-	bpp = tex->bpp / 8;
-	offset = ty * tex->line_length + tx * bpp;
-	ptr = (unsigned char *)tex->addr + offset;
-	color = *(unsigned int *)ptr;
-	return ((int)color);
 }

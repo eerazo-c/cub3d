@@ -69,47 +69,6 @@ int update_game(t_map *game)
     return (0);
 }
 
-/*
-int update_game(t_map *game)
-{
-    int moved;
-
-    moved = 0;
-    if (game->keys.w)
-    {
-        move_forward(game);
-        moved = 1;
-    }
-    if (game->keys.s)
-    {
-        move_backward(game);    
-        moved = 1;
-    }
-    if (game->keys.a)
-    {
-        move_left(game);
-        moved = 1;
-    }
-    if (game->keys.d)
-    {
-        move_right(game);
-        moved = 1;
-    }
-    if (game->keys.rotateleft)
-    {
-        rotate_left(game);
-        moved = 1;
-    }
-    if (game->keys.rotateright)
-    {
-        rotate_right(game);
-        moved = 1;
-    }
-    if (moved)
-        raycasting(game);
-    return (0);
-}*/
-
 void	rotate_left(t_map *game)
 {
 	double	old_dir_x;

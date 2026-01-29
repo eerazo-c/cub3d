@@ -23,13 +23,6 @@ void	ft_error_fd(char *msg, int fd)
 	ft_putendl_fd(msg, fd);
 	exit(1);
 }
-/*
-void	ft_error_fd_exvalue(char *msg, int fd, int exitvalue)
-{
-	ft_putendl_fd(msg, fd);
-	exit(exitvalue);
-}
-*/
 
 void	check_player_pos(char **map, int y, int x)
 {
