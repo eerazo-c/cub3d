@@ -1,4 +1,15 @@
-#ifndef	CUB3D_H 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/29 17:04:57 by elerazo-          #+#    #+#             */
+/*   Updated: 2026/01/29 17:32:04 by elerazo-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#ifndef CUB3D_H 
 # define CUB3D_H
 
 //# <biblioteca.h>
@@ -13,13 +24,10 @@
 # include "../libs/minilibx/mlx.h"
 # include "../libs/libft/libft.h"
 
+//keyboard
 # define ON_KEYPRESS 2
 # define ON_DESTROY 17
 # define ON_KEYRELEASE 3
-
-# define WIDTH	1080
-# define HEIGHT	1020
-
 # define ESC 65307
 
 # define K_LEFT 65361
@@ -30,18 +38,20 @@
 # define KEY_S 115
 # define KEY_W 119
 
+# define WIDTH	1080
+# define HEIGHT	1020
+
 typedef struct s_img_data
 {
-    void    *img_ptr;
-    char    *addr;
-    int      bpp;
-    int      line_length;
-    int      endian;
-    int      width;
-    int      height;
-	int      size_l;
-    
-} t_img_data;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+	int		size_l;
+}	t_img_data;
 
 typedef struct s_player
 {
@@ -64,74 +74,67 @@ typedef struct s_cardinal
 
 typedef struct s_raycast
 {
-    double	camera_x;      // Posición x en el plano de la cámara (-1 a 1)
-
-    double	ray_dir_x;     // Dirección del rayo en X
-    double	ray_dir_y;     // Dirección del rayo en Y
-
-    int		map_x;         // Posición del rayo en el mapa (coordenada X)
-    int		map_y;         // Posición del rayo en el mapa (coordenada Y)
-
-    double	side_dist_x;   // Distancia al siguiente lado X
-    double	side_dist_y;   // Distancia al siguiente lado Y
-
-    double	delta_dist_x;  // Distancia que recorre el rayo entre cada X
-    double	delta_dist_y;  // Distancia que recorre el rayo entre cada Y
-
-    int		step_x;        // Dirección de paso en X (-1 o 1)
-    int		step_y;        // Dirección de paso en Y (-1 o 1)
-    int		hit;           // ¿El rayo tocó una pared? (0 o 1)
-    int		side;          // ¿Qué lado de la pared tocó? (0=X, 1=Y)
-
-    double	perp_wall_dist;	 // Distancia perpendicular a la pared
-    int		line_height;    // Altura de la línea a dibujar
-    int		draw_start;     // Píxel donde empieza a dibujar la pared
-    int		draw_end;       // Píxel donde termina de dibujar la pared
-}   			t_raycast;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_raycast;
 
 typedef struct s_keys
 {
-    int         w;
-    int         s;
-    int         a;
-    int         d;
-    int         rotateleft;
-    int         rotateright;
-}				t_keys;
+	int	w;
+	int	s;
+	int	a;
+	int	d;
+	int	rotateleft;
+	int	rotateright;
+}	t_keys;
 
 typedef struct s_map
 {
-	void		    *mlx_ptr;
-	void		    *win_ptr;
-	t_cardinal	    cardinal;
-	char		    **map;
-    t_keys          keys;
-	int			    floor_color;
-	int			    floor_exist;
-	int			    ceiling_exist;
-	int			    ceiling_color;
-	int			    map_started;
-	t_player	    player;
-	t_img_data	    *imgs;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	char			**map;
+	t_keys			keys;
+	int				floor_color;
+	int				floor_exist;
+	int				ceiling_exist;
+	int				ceiling_color;
+	int				map_started;
+	t_player		player;
+	t_img_data		*imgs;
+	t_cardinal		cardinal;
 	unsigned int	map_width;
-    unsigned int	map_height;  
-}				t_map;
+	unsigned int	map_height;
+}	t_map;
 
 //PROTOTIPO_FUNCIONES
 
 //main
 void	check_arg(int argc, char **argv);
 
-
 //draw
-int    get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text);
-void    draw_ceiling(t_map *game, int x, int draw_start);
-void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x);
-void    draw_floor(t_map *game, int x, int draw_end);
+int		get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text);
+void	draw_ceiling(t_map *game, int x, int draw_start);
+void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x);
+void	draw_floor(t_map *game, int x, int draw_end);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 
 //errors 
-void check_player_exists(t_map *game);
+void	check_player_exists(t_map *game);
 
 //raycast 
 t_img_data    *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
