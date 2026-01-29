@@ -53,9 +53,9 @@ void	perform_dda(t_map *game, t_raycast *ray)
 	}
 }
 
-t_img_data	*set_texture_cardinal_pos(t_map *game, t_raycast *ray)
+t_img_d	*set_texture_cardinal_pos(t_map *game, t_raycast *ray)
 {
-	t_img_data	*texture;
+	t_img_d	*texture;
 
 	if (ray->side == 0)
 	{

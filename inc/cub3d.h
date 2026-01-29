@@ -115,7 +115,7 @@ typedef struct s_map
 	int				ceiling_color;
 	int				map_started;
 	t_player		player;
-	t_img_data		*imgs;
+	t_img_d		*imgs;
 	t_cardinal		cardinal;
 	unsigned int	map_width;
 	unsigned int	map_height;
@@ -127,9 +127,9 @@ typedef struct s_map
 void	check_arg(int argc, char **argv);
 
 //draw_map
-int		get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text);
+int		get_texture_wall(t_map *game, t_raycast *ray, t_img_d *text);
 void	draw_ceiling(t_map *game, int x, int draw_start);
-void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x);
+void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x);
 void	draw_floor(t_map *game, int x, int draw_end);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 
@@ -141,7 +141,7 @@ void	check_player_pos(char **map, int y, int x);
 
 //raycast 
 void	set_map_dimensions(t_map *game);
-t_img_data  *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
+t_img_d  *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
@@ -168,7 +168,7 @@ void	*ft_mem(size_t bytes);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	free_realloc(void *s);
 void	my_pixel_put(t_map *game, int x, int y, int color);
-int		get_texture_color(t_img_data *tex, int tx, int ty);
+int		get_texture_color(t_img_d *tex, int tx, int ty);
 char	*ft_strdup_v2(char *src);
 
 //test

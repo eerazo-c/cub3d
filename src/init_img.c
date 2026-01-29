@@ -74,7 +74,7 @@ void	init_imgs(t_map *game)
 
 	width = 64;
 	height = 64;
-	game->imgs = ft_calloc(5, sizeof(t_img_data));
+	game->imgs = ft_calloc(5, sizeof(t_img_d));
 	if (!game->imgs)
 		ft_error_fd("ERROR: images allocation failed", 1);
 	game->imgs[0].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int    get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text)
+int    get_texture_wall(t_map *game, t_raycast *ray, t_img_d *text)
 {
     double	wall_x;
     int		tex_x;
@@ -31,7 +31,7 @@ void    draw_ceiling(t_map *game, int x, int draw_start)
     }
 }
 
-void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x)
+void    draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x)
 {
     int     color;
     double  tex_step;
@@ -70,7 +70,7 @@ void    draw_floor(t_map *game, int x, int draw_end)
 
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
 {
-    t_img_data  *texture;
+    t_img_d  *texture;
     int         tex_x;
 
     texture = set_texture_cardinal_pos(game, ray);
