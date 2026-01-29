@@ -41,7 +41,7 @@
 # define WIDTH	1080
 # define HEIGHT	1020
 
-typedef struct s_img_data
+typedef struct s_img_d
 {
 	void	*img_ptr;
 	char	*addr;
@@ -51,7 +51,7 @@ typedef struct s_img_data
 	int		width;
 	int		height;
 	int		size_l;
-}	t_img_data;
+}	t_img_d;
 
 typedef struct s_player
 {
@@ -141,7 +141,7 @@ void	check_player_pos(char **map, int y, int x);
 
 //raycast 
 void	set_map_dimensions(t_map *game);
-t_img_data	*set_texture_cardinal_pos(t_map *game, t_raycast *ray);
+t_img_data  *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);

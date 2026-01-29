@@ -47,7 +47,7 @@ void	save_texture(char *line, t_map *game)
 			ft_error("ERROR: NO duplicated", *game);
 		while (line[i] && line[i] == ' ')
 			i++;
-		game->cardinal.no = ft_strdup(line +i);
+		game->cardinal.no = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
@@ -97,8 +97,6 @@ static void	add_map_line(char *line, t_map *game)
 
 	i = 0;
 	j = 0;
-//	if (!line || *line == '\0')
-//		ft_error_fd("ERROR: invalid map empty", 1);
 	while (game->map[i])
 		i++;
 	new_map = malloc(sizeof(char *) * (i + 2));

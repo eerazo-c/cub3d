@@ -101,7 +101,7 @@ void	my_pixel_put(t_map *game, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	get_texture_color(t_img_data *tex, int tx, int ty)
+int	get_texture_color(t_img_d *tex, int tx, int ty)
 {
 	unsigned char	*ptr;
 	int				bpp;
