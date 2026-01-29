@@ -32,14 +32,15 @@
 
 typedef struct s_img_data
 {
-    void	*img_ptr;      		
-    char	*addr;
-    int		bpp;
-    int		line_length;
-    int		endian;
-    int		width;
-    int		height;
-	int		size_l;
+    void    *img_ptr;
+    char    *addr;
+    int      bpp;
+    int      line_length;
+    int      endian;
+    int      width;
+    int      height;
+	int      size_l;
+    
 } t_img_data;
 
 typedef struct s_player

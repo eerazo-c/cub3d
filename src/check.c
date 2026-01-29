@@ -21,11 +21,11 @@ static int	is_player(char p)
 
 static int	check_map_floor(int y , int x, char **map)
 {
-	if (map[y - 1][x] == ' ')
+	if (map[y - 1][x] == ' ' || map[y - 1][x] == '\0' || map[y + 1][x] == '\n')
 		return (1);
 	if (map[y + 1][x] == '\0' || map[y + 1][x] == '\n' || map[y + 1][x] == ' ')
 		return (1);
-	if ( map[y][x - 1] == ' ')
+	if (map[y][x - 1] == ' ')
 		return (1);
 	if (map[y][x + 1] == '\0' || map[y][x + 1] == '\n' || map[y][x + 1] == ' ')
 		return (1);
@@ -54,7 +54,7 @@ void	check_map(char **map)
 	i = 0;
 	err = 0;
 	if (!map)
-		ft_error_fd("Error: mapa error (checkmap)",1);
+		ft_error_fd("Error: mapa error (checkmap)", 1);
 	while (map[i] && err == 0)
 	{
 		exist_obj(map[i]);

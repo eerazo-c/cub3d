@@ -70,15 +70,12 @@ void    draw_floor(t_map *game, int x, int draw_end)
 
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
 {
-    t_img_data	*texture;
-    int			tex_x;
+    t_img_data  *texture;
+    int         tex_x;
 
     texture = set_texture_cardinal_pos(game, ray);
     tex_x = get_texture_wall(game, ray, texture);
-    // Dibujar techo
     draw_ceiling(game, x, ray->draw_start);
-    // Dibujar la pared con textura
     draw_wall(game, ray, x, texture, tex_x);
-    // Dibujar suelo
     draw_floor(game, x, ray->draw_end);
 }

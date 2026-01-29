@@ -1,14 +1,18 @@
 
 NO ./imgs/greystone.xpm
+
 SO ./imgs/wood.xpm
+
 WE ./imgs/purplestone.xpm
+
 EA ./imgs/redbrick.xpm
 
 F 121,121,121
+
 C 225,30,42
 
 11111111
-110000011
-1001000N01
-1011000111
+110010111
+1001 10N01
+1011110111
 11111111

@@ -13,7 +13,7 @@
 
 void	save_color(char *line, t_map *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strchr(line, 'F'))
@@ -38,7 +38,7 @@ void	save_color(char *line, t_map *game)
 
 void	save_texture(char *line, t_map *game)
 {
-	int i;
+	int	i;
 
 	i = 2;
 	if (ft_strchr(line, 'N'))
