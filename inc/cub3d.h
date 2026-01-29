@@ -126,20 +126,22 @@ typedef struct s_map
 //main
 void	check_arg(int argc, char **argv);
 
-//draw
+//draw_map
 int		get_texture_wall(t_map *game, t_raycast *ray, t_img_data *text);
 void	draw_ceiling(t_map *game, int x, int draw_start);
 void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_data *texture, int tex_x);
 void	draw_floor(t_map *game, int x, int draw_end);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 
-//errors 
+//errors_handler 
 void	check_player_exists(t_map *game);
+void	ft_error(char *msg, t_map game);
+void	ft_error_fd(char *msg, int fd);
+void	check_player_pos(char **map, int y, int x);
 
 //raycast 
-t_img_data    *set_texture_cardinal_pos(t_map *game, t_raycast *ray);
-
-void	set_map_dimensions(t_map *game); // no se no funciona bien
+void	set_map_dimensions(t_map *game);
+t_img_data	*set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
@@ -165,8 +167,6 @@ void	cub_free(char **str);
 void	*ft_mem(size_t bytes);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	free_realloc(void *s);
-void	ft_error(char *msg, t_map game);
-void	ft_error_fd(char *msg, int fd);
 void	my_pixel_put(t_map *game, int x, int y, int color);
 int		get_texture_color(t_img_data *tex, int tx, int ty);
 char	*ft_strdup_v2(char *src);
@@ -182,9 +182,8 @@ void	raycasting(t_map *game);
 
 //keyhooks
 int		handle_keypress(int keycode, t_map *game);
-int     handle_release(int keycode, t_map *game);
-int     update_game(t_map *game);
-
+int		handle_release(int keycode, t_map *game);
+int		update_game(t_map *game);
 int		handle_close(t_map *game);
 void	move_forward(t_map *game);
 void	move_backward(t_map *game);
@@ -195,7 +194,7 @@ void	rotate_right(t_map *game);
 
 //init_img
 void	init_imgs(t_map *game);
-void	init_texture_no(t_map *game,  int index, int width, int height);
+void	init_texture_no(t_map *game, int index, int width, int height);
 void	init_texture_so(t_map *game, unsigned int index, int width, int height);
 void	init_texture_we(t_map *game, unsigned int index, int width, int height);
 void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
@@ -211,6 +210,5 @@ void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
 void	init_player(t_map *game);
-
 
 #endif
