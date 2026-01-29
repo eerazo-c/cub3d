@@ -97,8 +97,8 @@ static void	add_map_line(char *line, t_map *game)
 
 	i = 0;
 	j = 0;
-	if (!line || *line == '\0')
-		ft_error_fd("ERROR: invalid map empty", 1);
+//	if (!line || *line == '\0')
+//		ft_error_fd("ERROR: invalid map empty", 1);
 	while (game->map[i])
 		i++;
 	new_map = malloc(sizeof(char *) * (i + 2));
