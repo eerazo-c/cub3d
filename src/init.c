@@ -6,7 +6,7 @@
 /*   By: elerazo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 17:23:20 by elerazo           #+#    #+#             */
-/*   Updated: 2026/01/20 17:30:01 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/30 14:36:07 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -35,6 +35,20 @@ void	init_player(t_map *game)
 		}
 		i++;
 	}
+}
+
+void	init_map(char *line, t_map *game)
+{
+	game->map = malloc(sizeof(char *) * 2);
+	if (!game->map)
+		ft_error_fd("ERROR: malloc failed(init_map)", 1);
+	game->map[0] = ft_strdup(line);
+	if (!game->map[0])
+	{
+		free(game->map);
+		ft_error_fd("ERROR: malloc failed(init_map)v2", 1);
+	}
+	game->map[1] = NULL;
 }
 
 void	init_all(t_map *game)

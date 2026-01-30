@@ -6,7 +6,7 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:04:57 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/29 17:32:04 by elerazo-         ###   ########.fr       */
+/*   Updated: 2026/01/30 14:45:40 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D_H 
@@ -121,15 +121,6 @@ typedef struct s_map
 	unsigned int	map_height;
 }	t_map;
 
-/*typedef struct s_draw_data
-{
-    t_img_d	*texture;
-    int	tex_x;
-    int	x;
-    double	tex_step;
-    double	tex_pos;
-}   t_draw_data;*/
-
 //PROTOTIPO_FUNCIONES
 
 //main
@@ -219,6 +210,7 @@ void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
 void	init_player(t_map *game);
+void	init_map(char *line, t_map *game);
 
 //check_player
 void	check_player_dir(t_map *game, int dir);

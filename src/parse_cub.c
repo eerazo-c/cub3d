@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:02:31 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/27 17:50:09 by elerazo          ###   ########.fr       */
+/*   Updated: 2026/01/30 14:55:08 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -64,11 +64,6 @@ char	*read_line(int fd)
 		if (xchar == '\n')
 			break ;
 		buffer = check_and_expand_buffer(buffer, &size, byte);
-/*		if (byte + 1 >= size)
-		{
-			buffer = ft_realloc(buffer, size, size * 2);
-			size *= 2;
-		}*/
 		buffer[byte++] = xchar;
 	}
 	buffer[byte] = '\0';
