@@ -1,9 +1,9 @@
 `<Cub3D>`
 
 This project has been created as part
-of the 42 curriculum by `<elerazo->`  `<israetor->`
+of the 42 curriculum by `<elerazo>`  `<israetor>`
 
-`<Description:>`
+`<Description>`
 
 Cub3D is a graphics project inspired by the famous Wolfenstein 3D game.
 The goal of this project is to explore the basics of raycasting and understand
@@ -73,5 +73,5 @@ AI was used as a learning support tool to:
 4. AI was not used to implement the core logic automatically,
    but to better understand the theory and debug errors.
 
-`<This project is part of the learning path at 42 and aims to build a solid foundation
-in networking through hands-on practice>`
+`<This project is part of the learning path at 42 and aims to introduce
+students to graphical programming and low-level game engine concepts>`
