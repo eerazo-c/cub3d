@@ -121,6 +121,15 @@ typedef struct s_map
 	unsigned int	map_height;
 }	t_map;
 
+/*typedef struct s_draw_data
+{
+    t_img_d	*texture;
+    int	tex_x;
+    int	x;
+    double	tex_step;
+    double	tex_pos;
+}   t_draw_data;*/
+
 //PROTOTIPO_FUNCIONES
 
 //main
@@ -130,7 +139,7 @@ void	check_arg(int argc, char **argv);
 //draw_map
 int		get_texture_wall(t_map *game, t_raycast *ray, t_img_d *text);
 void	draw_ceiling(t_map *game, int x, int draw_start);
-void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x);
+void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture);
 void	draw_floor(t_map *game, int x, int draw_end);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 

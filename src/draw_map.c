@@ -41,6 +41,7 @@ void	draw_ceiling(t_map *game, int x, int draw_start)
 	}
 }
 
+/*
 void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x)
 {
 	int		color;
@@ -64,6 +65,39 @@ void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x)
 		tex_pos += tex_step;
 		y++;
 	}
+}*/
+
+static int	get_tex_y(t_img_d *texture, double tex_pos)
+{
+	int	tex_y;
+
+	tex_y = (int)tex_pos;
+	if (tex_y < 0)
+		return (0);
+	if (tex_y >= texture->height)
+		return (texture->height - 1);
+	return (tex_y);
+}
+
+void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture)
+{
+	int		color;
+	double	tex_step;
+	double	tex_pos;
+	int		tex_x;
+	int		y;
+
+	tex_x = get_texture_wall(game, ray, texture);
+	tex_step = (double)texture->height / (double)ray->line_height;
+	tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * tex_step;
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		color = get_texture_color(texture, tex_x, get_tex_y(texture, tex_pos));
+		my_pixel_put(game, x, y, color);
+		tex_pos += tex_step;
+		y++;
+	}
 }
 
 void	draw_floor(t_map *game, int x, int draw_end)
@@ -81,11 +115,12 @@ void	draw_floor(t_map *game, int x, int draw_end)
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x)
 {
 	t_img_d	*texture;
-	int		tex_x;
+	//int		tex_x;
 
 	texture = set_texture_cardinal_pos(game, ray);
-	tex_x = get_texture_wall(game, ray, texture);
+	//tex_x = get_texture_wall(game, ray, texture);
 	draw_ceiling(game, x, ray->draw_start);
-	draw_wall(game, ray, x, texture, tex_x);
+	//draw_wall(game, ray, x, texture, tex_x);
+	draw_wall(game, ray, x, texture);
 	draw_floor(game, x, ray->draw_end);
 }

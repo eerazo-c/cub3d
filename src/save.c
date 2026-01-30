@@ -36,41 +36,66 @@ void	save_color(char *line, t_map *game)
 	}
 }
 
+static int	check_duplicates_text(t_map *game, char *line, char c)
+{	
+	int i;
+
+	i = 2;
+	if (c == 'N' && game->cardinal.no)
+		ft_error_fd("ERROR: NO duplicated", 1);
+	if (c == 'S' && game->cardinal.so)
+		ft_error_fd("ERROR: SO duplicated", 1);
+	if (c == 'W' && game->cardinal.we)
+		ft_error_fd("ERROR: WE duplicated", 1);
+	if (c == 'E' && game->cardinal.ea)
+		ft_error_fd("ERROR: EA duplicated", 1);
+		
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (i);
+}
+	
+
+
 void	save_texture(char *line, t_map *game)
 {
 	int	i;
 
-	i = 2;
+	//i = 2;
 	if (ft_strchr(line, 'N'))
 	{
-		if (game->cardinal.no)
-			ft_error("ERROR: NO duplicated", *game);
-		while (line[i] && line[i] == ' ')
-			i++;
+	//	if (game->cardinal.no)
+	//		ft_error("ERROR: NO duplicated", *game);
+	//	while (line[i] && line[i] == ' ')
+	//		i++;
+		 i = check_duplicates_text(game, line, 'N');
 		game->cardinal.no = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'S'))
 	{
-		if (game->cardinal.so)
-			ft_error("ERROR: SO duplicated", *game);
-		while (line[i] && line[i] == ' ')
-			i++;
+		// if (game->cardinal.so)
+		// 	ft_error("ERROR: SO duplicated", *game);
+		// while (line[i] && line[i] == ' ')
+		// 	i++;
+		 i = check_duplicates_text(game, line, 'S');
 		game->cardinal.so = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'W'))
 	{
-		if (game->cardinal.we)
-			ft_error("ERROR: WE duplicated", *game);
-		while (line[i] && line[i] == ' ')
-			i++;
+		// if (game->cardinal.we)
+		// 	ft_error("ERROR: WE duplicated", *game);
+		// while (line[i] && line[i] == ' ')
+		// 	i++;
+		 i = check_duplicates_text(game, line, 'W');
 		game->cardinal.we = ft_strdup(line + i);
 	}
 	else if (ft_strchr(line, 'E'))
 	{
-		if (game->cardinal.ea)
-			ft_error("ERROR: EA duplicated", *game);
-		while (line[i] && line[i] == ' ')
-			i++;
+		// if (game->cardinal.ea)
+		// 	ft_error("ERROR: EA duplicated", *game);
+		// while (line[i] && line[i] == ' ')
+		// 	i++;
+		 i = check_duplicates_text(game, line, 'E');
 		game->cardinal.ea = ft_strdup(line + i);
 	}
 }

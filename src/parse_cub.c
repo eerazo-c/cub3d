@@ -36,6 +36,16 @@ void	parse_line(char *line, t_map *game)
 		save_map_line(line, game);
 }
 
+static char	*check_and_expand_buffer(char *buffer, int *size, int byte)
+{
+	if (byte + 1 >= *size)
+	{
+		buffer = ft_realloc(buffer, *size, (*size) * 2);
+		*size *= 2;
+	}
+	return (buffer);
+}
+
 char	*read_line(int fd)
 {
 	char	*buffer;
@@ -53,11 +63,12 @@ char	*read_line(int fd)
 		hascontent = 1;
 		if (xchar == '\n')
 			break ;
-		if (byte + 1 >= size)
+		buffer = check_and_expand_buffer(buffer, &size, byte);
+/*		if (byte + 1 >= size)
 		{
 			buffer = ft_realloc(buffer, size, size * 2);
 			size *= 2;
-		}
+		}*/
 		buffer[byte++] = xchar;
 	}
 	buffer[byte] = '\0';
