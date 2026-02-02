@@ -61,3 +61,27 @@ void	calculate_wall_distance(t_map *game, t_raycast *ray)
 	if (ray->perp_wall_dist < 0.001)
 		ray->perp_wall_dist = 0.001;
 }
+
+int	get_texture_color(t_img_d *tex, int tx, int ty)
+{
+	unsigned char	*ptr;
+	int				bpp;
+	int				offset;
+	unsigned int	color;
+
+	if (!tex || !tex->addr)
+		return (0);
+	if (tx < 0)
+		tx = 0;
+	if (ty < 0)
+		ty = 0;
+	if (tx >= tex->width)
+		tx = tex->width - 1;
+	if (ty >= tex->height)
+		ty = tex->height - 1;
+	bpp = tex->bpp / 8;
+	offset = ty * tex->line_length + tx * bpp;
+	ptr = (unsigned char *)tex->addr + offset;
+	color = *(unsigned int *)ptr;
+	return ((int)color);
+}

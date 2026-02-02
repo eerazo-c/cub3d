@@ -6,7 +6,7 @@
 /*   By: elerazo- <elerazo-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/29 17:04:57 by elerazo-          #+#    #+#             */
-/*   Updated: 2026/01/29 19:27:35 by israetor         ###   ########.fr       */
+/*   Updated: 2026/01/30 14:45:40 by elerazo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef CUB3D_H 
@@ -124,12 +124,13 @@ typedef struct s_map
 //PROTOTIPO_FUNCIONES
 
 //main
+int		check_filename(char	*filename);
 void	check_arg(int argc, char **argv);
 
 //draw_map
 int		get_texture_wall(t_map *game, t_raycast *ray, t_img_d *text);
 void	draw_ceiling(t_map *game, int x, int draw_start);
-void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture, int tex_x);
+void	draw_wall(t_map *game, t_raycast *ray, int x, t_img_d *texture);
 void	draw_floor(t_map *game, int x, int draw_end);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 
@@ -143,6 +144,8 @@ void	check_player_pos(char **map, int y, int x);
 void	raycasting(t_map *game);
 t_img_d	*set_texture_cardinal_pos(t_map *game, t_raycast *ray);
 void	set_map_dimensions(t_map *game);
+void	init_raycast(t_map *game, t_raycast *ray, int x);
+void	perform_dda(t_map *game, t_raycast *ray);
 
 //parse_cub
 void	parse_cub(char *file, t_map *game);
@@ -169,29 +172,27 @@ void	*ft_mem(size_t bytes);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 void	free_realloc(void *s);
 void	my_pixel_put(t_map *game, int x, int y, int color);
-int		get_texture_color(t_img_d *tex, int tx, int ty);
-char	*ft_strdup_v2(char *src);
 
-//test
+//calculate
 void	calculate_line_height(t_raycast *ray);
 void	draw_vertical_line(t_map *game, t_raycast *ray, int x);
 void	calculate_wall_distance(t_map *game, t_raycast *ray);
-void	perform_dda(t_map *game, t_raycast *ray);
 void	calculate_step_and_side_dist(t_map *game, t_raycast *ray);
-void	init_raycast(t_map *game, t_raycast *ray, int x);
-void	raycasting(t_map *game);
+int		get_texture_color(t_img_d *tex, int tx, int ty);
 
-//keyhooks
+//key_handler
 int		handle_keypress(int keycode, t_map *game);
 int		handle_release(int keycode, t_map *game);
 int		update_game(t_map *game);
-int		handle_close(t_map *game);
+void	rotate_left(t_map *game);
+void	rotate_right(t_map *game);
+
+//keys
 void	move_forward(t_map *game);
 void	move_backward(t_map *game);
 void	move_left(t_map *game);
 void	move_right(t_map *game);
-void	rotate_left(t_map *game);
-void	rotate_right(t_map *game);
+int		handle_close(t_map *game);
 
 //init_img
 void	init_imgs(t_map *game);
@@ -201,15 +202,17 @@ void	init_texture_we(t_map *game, unsigned int index, int width, int height);
 void	init_texture_ea(t_map *game, unsigned int index, int width, int height);
 
 //check
-//int		check_map(t_map *game);
 void	check_map(char **map);
 int		parse_rgb(char *str, t_map *game);
-int		check_filename(char	*filename);
-void	check_player_dir(t_map *game, int dir);
+
 //init
 void	init_all(t_map *game);
 void	init_window(t_map *game);
 void	init_parse(t_map *game, char *str);
 void	init_player(t_map *game);
+void	init_map(char *line, t_map *game);
+
+//check_player
+void	check_player_dir(t_map *game, int dir);
 
 #endif

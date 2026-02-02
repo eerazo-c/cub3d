@@ -6,19 +6,20 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2026/01/29 16:34:08 by israetor         ###   ########.fr        #
+#    Updated: 2026/01/30 14:45:16 by elerazo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	cub3d
 CC			=	cc
-#CFLAGS		=	-Wall -Wextra -Werror -g -I inc/ 
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g -I inc/ 
+CFLAGS		=	-Wall -Wextra -Werror -g -I inc/ 
+#CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -g -I inc/ 
 MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
 SRCSDIR		=	src
 SRCS		=	main.c utils.c parse_cub.c detector.c save.c keys.c \
 				raycast.c keys_handler.c calculate.c error_handler.c \
-				init_img.c check.c init.c draw_map.c
+				init_img.c check.c init.c draw_map.c check_player.c \
+				draw_wall.c
 
 MLX_PATH	=	./libs/minilibx
 LIBFT_PATH	=	./libs/libft/

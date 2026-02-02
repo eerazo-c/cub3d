@@ -85,10 +85,6 @@ void	init_imgs(t_map *game)
 	game->imgs[0].line_length = game->imgs[0].size_l;
 	game->imgs[0].width = WIDTH;
 	game->imgs[0].height = HEIGHT;
-	// printf("Loading NO texture: {%s}\n", game->cardinal.no);
-	// printf("Loading SO texture: {%s}\n", game->cardinal.so);
-	// printf("Loading WE texture: {%s}\n", game->cardinal.we);
-	// printf("Loading EA texture: {%s}\n", game->cardinal.ea);
 	init_texture_no(game, 1, width, height);
 	init_texture_so(game, 2, width, height);
 	init_texture_we(game, 3, width, height);

@@ -11,6 +11,30 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 
+int	check_filename(char	*filename)
+{
+	char	*ext;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	ext = ".cub";
+	if (ft_strlen(filename) <= 4)
+		return (-1);
+	while (filename[i])
+		i++;
+	i = i - 4;
+	while (filename[i])
+	{
+		if (filename[i++] == ext[j++])
+			continue ;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
 void	check_arg(int argc, char **argv)
 {
 	if (argc == 1)
